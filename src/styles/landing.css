@@ -440,6 +440,7 @@
   .hero-visual--right {
     display: flex;
     right: max(1.25rem, calc(50% - 27rem));
+    width: min(26vw, 15.5rem);
     justify-content: flex-start;
   }
 
@@ -461,7 +462,8 @@
     max-height: 100%;
     object-fit: contain;
     object-position: center bottom;
-    transform: translateY(0.8rem);
+    transform: translateY(0.8rem) scale(1.08);
+    transform-origin: center bottom;
   }
 }
 
@@ -530,6 +532,7 @@
   .hero-visual--right {
     display: flex;
     right: max(2rem, calc(50% - 36rem));
+    width: min(26vw, 21.5rem);
   }
 
   .hero-visual img {
@@ -548,7 +551,8 @@
   }
 
   .hero-visual--right img {
-    transform: translateY(1.25rem);
+    transform: translateY(1.25rem) scale(1.08);
+    transform-origin: center bottom;
   }
 }
 
@@ -577,7 +581,7 @@
   }
 
   .hero-visual--right img {
-    transform: translateY(1.5rem);
+    transform: translateY(1.5rem) scale(1.08);
   }
 }
 
