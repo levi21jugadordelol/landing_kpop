@@ -378,7 +378,7 @@
 @media (min-width: 890px) {
   .landing-hero,
   .hero-carousel {
-    min-height: 100svh;
+    min-height: clamp(34rem, 72svh, 40rem);
   }
 
   .hero-carousel {
@@ -390,8 +390,8 @@
 
   .hero-slide {
     display: grid;
-    min-height: 100svh;
-    padding: 3rem 2rem 2rem;
+    min-height: clamp(34rem, 72svh, 40rem);
+    padding: 2.25rem 2rem 2rem;
     align-content: center;
     gap: 0;
   }
@@ -422,10 +422,10 @@
 
   .hero-visual {
     position: absolute;
-    bottom: 2rem;
+    bottom: 1.75rem;
     order: 0;
     width: min(24vw, 14rem);
-    height: min(45svh, 25rem);
+    height: min(45svh, 24rem);
     align-items: flex-end;
     justify-content: center;
   }
@@ -433,7 +433,7 @@
   .hero-visual--left {
     left: max(1.25rem, calc(50% - 28rem));
     width: min(22vw, 12.75rem);
-    height: min(45svh, 25rem);
+    height: min(45svh, 24rem);
     justify-content: flex-end;
   }
 
@@ -466,11 +466,17 @@
 }
 
 @media (min-width: 1024px) {
+  .landing-hero,
+  .hero-carousel,
+  .hero-slide {
+    min-height: clamp(36rem, 72svh, 42rem);
+  }
+
   .hero-slide {
     grid-template-columns: 1fr;
     max-width: var(--hero-shell);
     margin-inline: auto;
-    padding: 3rem 1rem 2.5rem;
+    padding: 2.25rem 1rem 2.35rem;
     align-items: center;
     align-content: center;
   }
@@ -510,15 +516,15 @@
 
   .hero-visual {
     order: 0;
-    bottom: 2.5rem;
+    bottom: 2.1rem;
     width: min(24vw, 20rem);
-    height: min(62svh, 38rem);
+    height: min(60svh, 34rem);
   }
 
   .hero-visual--left {
     left: max(2rem, calc(50% - 38rem));
     width: min(22vw, 18.5rem);
-    height: min(62svh, 38rem);
+    height: min(60svh, 34rem);
   }
 
   .hero-visual--right {
@@ -557,13 +563,13 @@
 
   .hero-visual {
     width: min(24vw, 21rem);
-    height: min(66svh, 40rem);
+    height: min(60svh, 35rem);
   }
 
   .hero-visual--left {
     left: max(2rem, calc(50% - 39rem));
     width: min(22vw, 19rem);
-    height: min(66svh, 40rem);
+    height: min(60svh, 35rem);
   }
 
   .hero-visual--left img {
