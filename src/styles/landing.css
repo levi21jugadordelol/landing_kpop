@@ -257,8 +257,8 @@
 .hero-visual--left img {
   width: auto;
   height: auto;
-  max-width: min(64vw, 18rem);
-  max-height: min(26svh, 15rem);
+  max-width: min(68vw, 20rem);
+  max-height: min(36svh, 19rem);
   object-fit: contain;
   object-position: center bottom;
 }
@@ -310,8 +310,8 @@
 
   .hero-visual--left img {
     width: auto;
-    max-width: min(46vw, 22rem);
-    max-height: min(30svh, 18rem);
+    max-width: min(54vw, 25rem);
+    max-height: min(38svh, 22rem);
     object-fit: contain;
     object-position: center bottom;
   }
@@ -365,8 +365,8 @@
   .hero-visual--left img {
     width: auto;
     height: auto;
-    max-width: min(50vw, 24rem);
-    max-height: min(34svh, 21rem);
+    max-width: min(58vw, 27rem);
+    max-height: min(42svh, 24rem);
     transform: none;
   }
 
