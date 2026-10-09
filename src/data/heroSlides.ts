@@ -24,7 +24,7 @@ export const heroSlides: HeroSlide[] = [
     id: 'hero-01',
     eyebrow: 'Stock limitado · consulta directa',
     title: 'Encuentra tu álbum K-pop antes de que se agote',
-    titleLines: ['Encuentra tu', 'álbum K-pop', 'antes de que se agote'],
+    titleLines: ['Encuentra tu', 'álbum K-pop', 'antes de que', 'se agote'],
     description:
       'Mira productos seleccionados, confirma disponibilidad por WhatsApp y coordina tu compra sin carrito ni pasos innecesarios.',
     ctaLabel: 'Consultar disponibilidad',
