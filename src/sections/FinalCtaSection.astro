@@ -1,0 +1,22 @@
+---
+import { business } from '../data/business';
+import { buildGeneralWhatsAppLink } from '../scripts/whatsapp/links';
+---
+
+<section class="landing-section landing-section--final">
+  <div class="section-shell">
+    <div class="final-cta">
+      <p class="section-eyebrow">Consulta directa</p>
+      <h2>¿Quieres confirmar disponibilidad?</h2>
+
+      <p>
+        Escríbenos por WhatsApp y confirma stock, precio y entrega antes de
+        separar tu álbum.
+      </p>
+
+      <a href={buildGeneralWhatsAppLink()}>
+        {business.primaryCta}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,17 +1,24 @@
 ---
-
+import LandingLayout from '../layouts/LandingLayout.astro';
+import { business } from '../data/business';
+import HeroSection from '../sections/HeroSection.astro';
+import CatalogSection from '../sections/CatalogSection.astro';
+import DeliveriesSection from '../sections/DeliveriesSection.astro';
+import TrustSection from '../sections/TrustSection.astro';
+import HowToBuySection from '../sections/HowToBuySection.astro';
+import FaqSection from '../sections/FaqSection.astro';
+import FinalCtaSection from '../sections/FinalCtaSection.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<LandingLayout
+  title={`${business.name} | ${business.niche}`}
+  description={business.subheadline}
+>
+  <HeroSection />
+  <CatalogSection />
+  <DeliveriesSection />
+  <TrustSection />
+  <HowToBuySection />
+  <FaqSection />
+  <FinalCtaSection />
+</LandingLayout>

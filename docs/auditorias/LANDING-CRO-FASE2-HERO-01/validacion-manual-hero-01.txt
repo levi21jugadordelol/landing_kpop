@@ -1,0 +1,23 @@
+=== VALIDACION MANUAL LANDING-CRO-FASE2-HERO-01 ===
+
+Tarjeta:
+LANDING-CRO-FASE2-HERO-01
+
+Ambiente:
+npm run dev en entorno local.
+
+Validaciones:
+- Hero carga correctamente en navegador local.
+- Entrada del titulo por lineas visible al recargar.
+- K-pop queda estable y no parpadea.
+- CTA principal conserva brillo y no fue modificado.
+- Imagen izquierda, texto central e imagen derecha se mantienen en desktop.
+- Texto principal legible.
+- No se tocaron catalogo, CMS, backend ni ecommerce.
+
+Estado:
+APROBADO VISUALMENTE POR VALIDACION MANUAL DEL USUARIO.
+
+Pendiente:
+- npm run build para cierre tecnico final.
+- git diff --check para cierre tecnico final.

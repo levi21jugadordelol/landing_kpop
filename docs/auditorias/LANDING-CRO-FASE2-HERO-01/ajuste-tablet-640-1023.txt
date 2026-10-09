@@ -1,0 +1,84 @@
+=== AJUSTE TABLET HERO 640-1023 ===
+
+=== BLOQUE TABLET ===
+488:@media (min-width: 640px) and (max-width: 1023px) {
+489-  .hero-slide {
+490-    min-height: 50svh;
+491-    padding: 1.75rem 2rem;
+492-  }
+493-
+494-  .hero-content {
+495-    width: min(100%, 44rem);
+496-    max-width: 44rem;
+497-  }
+498-
+499-  .hero-title {
+500-    max-width: 13ch;
+501-    font-size: clamp(2.5rem, 4.8vw, 3.2rem);
+502-    line-height: 0.94;
+503-  }
+504-
+505-  .hero-description {
+506-    max-width: 31rem;
+507-  }
+508-}
+509-/* END LANDING-CRO-FASE2-HERO-01 responsive final */
+
+=== BUILD ===
+
+> landing-cro@0.0.1 build
+> astro build
+
+[2m12:08:14[22m [34m[types][39m Generated [2m94ms[22m
+[2m12:08:14[22m [34m[build][39m output: [34m"static"[39m
+[2m12:08:14[22m [34m[build][39m mode: [34m"static"[39m
+[2m12:08:14[22m [34m[build][39m directory: [34mD:\landing-cro\dist\[39m
+[2m12:08:14[22m [34m[build][39m Collecting build info...
+[2m12:08:14[22m [34m[build][39m [32m✓ Completed in 141ms.[39m
+[2m12:08:14[22m [34m[build][39m Building static entrypoints...
+[2m12:08:14[22m [34m[vite][39m [32m✓ built in 304ms[39m
+[2m12:08:14[22m [34m[vite][39m [32m✓ built in 21ms[39m
+[2m12:08:14[22m [34m[build][39m Rearranging server assets...
+
+[42m[30m generating static routes [39m[49m
+[2m12:08:14[22m   [34m├─[39m [2m/index.html[22m [2m(+28ms)[22m 
+[2m12:08:14[22m [32m✓ Completed in 45ms.
+[39m
+[42m[30m generating optimized images [39m[49m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_1zM0E9.avif [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(1/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_Z1antQu.avif [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(2/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z1WHqL4.avif [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(3/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZsQyGL.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(4/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_229wWz.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(5/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_ZSB6dv.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(6/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_UBD6w.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(7/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_1PDrNm.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(8/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_Z1MpBic.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(9/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_ZwAPaJ.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(10/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_1KnDQC.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(11/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_EUKYX.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(12/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZaqMaX.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(13/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_VH9CW.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(14/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_2jbyyT.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(15/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_Z1tYOLo.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(16/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_Z1oeq97.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(17/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_1dQotB.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(18/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZRBpYT.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(19/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_1io3td.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(20/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_21hRSN.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(21/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z9OpN3.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(22/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_2i4gwM.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(23/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZChVLh.png [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(24/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z1EU1eS.png [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(25/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_Z2Rjfh.png [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(26/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_Z1VPYmH.png [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(27/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_2jVWtK.png [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(28/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_18k1FK.png [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(29/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_ZcaFaK.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(30/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z1Eo9s1.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(31/32)[22m
+[2m12:08:14[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_ZmHfyp.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(32/32)[22m
+[2m12:08:14[22m [32m✓ Completed in 18ms.
+[39m
+[2m12:08:14[22m [34m[build][39m [32m✓ Completed in 445ms.[39m
+[2m12:08:14[22m [34m[build][39m 1 page(s) built in [1m593ms[22m
+[2m12:08:14[22m [34m[build][39m [1mComplete![22m

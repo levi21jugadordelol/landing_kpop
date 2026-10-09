@@ -1,0 +1,51 @@
+---
+const deliveries = [
+  {
+    title: 'Productos entregados',
+    note: 'Álbumes y photocards listos para llegar a manos de fans.',
+    image: '/images/deliveries/entrega-01.jpg',
+  },
+  {
+    title: 'Empaque protegido',
+    note: 'Cuidado en cada pedido para proteger el contenido coleccionable.',
+    image: '/images/deliveries/entrega-02.jpg',
+  },
+  {
+    title: 'Compra coordinada',
+    note: 'Consulta por WhatsApp, confirma disponibilidad y coordina tu compra.',
+    image: '/images/deliveries/entrega-03.jpg',
+  },
+];
+---
+
+<section class="landing-section landing-section--deliveries" aria-labelledby="deliveries-title">
+  <div class="section-shell">
+    <div class="section-heading">
+      <p class="section-eyebrow">Entregas</p>
+      <h2 id="deliveries-title">Confianza antes de consultar</h2>
+      <p>
+        Revisa referencias de pedidos, empaques y productos para comprar con más
+        seguridad antes de escribir por WhatsApp.
+      </p>
+    </div>
+
+    <div class="delivery-grid">
+      {
+        deliveries.map((delivery) => (
+          <article class="delivery-card">
+            <div
+              class="delivery-card__media"
+              style={`--delivery-image: url('${delivery.image}')`}
+              aria-hidden="true"
+            >
+            </div>
+            <div class="delivery-card__body">
+              <h3>{delivery.title}</h3>
+              <p>{delivery.note}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

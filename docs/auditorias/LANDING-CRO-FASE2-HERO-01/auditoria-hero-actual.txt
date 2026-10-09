@@ -1,0 +1,780 @@
+=== AUDITORIA LANDING-CRO-FASE2-HERO-01 ===
+FECHA_LOCAL=Wed Sep 30 11:00:53 HPS 2026
+
+=== 1. ESTADO GIT ===
+ M astro.config.mjs
+ M package-lock.json
+ M package.json
+ M src/pages/index.astro
+?? docs/
+?? src/assets/
+?? src/data/
+?? src/layouts/
+?? src/scripts/
+?? src/sections/
+?? src/styles/
+
+=== 2. DIFF ACTUAL ===
+ astro.config.mjs      |   8 +-
+ package-lock.json     | 605 +++++++++++++++++++++++++++++++++++++++++++++++++-
+ package.json          |   6 +-
+ src/pages/index.astro |  33 +--
+ 4 files changed, 634 insertions(+), 18 deletions(-)
+
+=== 3. ARCHIVOS RELACIONADOS CON HERO ===
+src/data/business.ts
+src/data/heroSlides.ts
+src/layouts/LandingLayout.astro
+src/pages/index.astro
+src/scripts/whatsapp/links.ts
+src/sections/HeroSection.astro
+src/styles/animations.css
+src/styles/landing.css
+
+=== 4. HERO SECTION ===
+     1	---
+     2	import { Picture } from 'astro:assets';
+     3	import { business } from '../data/business';
+     4	import { heroSlides } from '../data/heroSlides';
+     5	import { buildGeneralWhatsAppLink } from '../scripts/whatsapp/links';
+     6	
+     7	const whatsappLink = buildGeneralWhatsAppLink();
+     8	---
+     9	
+    10	<section class="landing-hero" aria-label="Promociones principales">
+    11	  <div class="hero-carousel" aria-label="Carrusel principal">
+    12	    {
+    13	      heroSlides.map((slide) => (
+    14	        <article class={`hero-slide hero-slide--${slide.layout}`}>
+    15	          {slide.imageLeft && (
+    16	            <div class="hero-visual hero-visual--left" aria-hidden="true">
+    17	              <Picture
+    18	                src={slide.imageLeft}
+    19	                alt=""
+    20	                formats={['avif', 'webp']}
+    21	                widths={[360, 520, 720, 920]}
+    22	                sizes="(min-width: 1024px) 34vw, 88vw"
+    23	                loading="eager"
+    24	              />
+    25	            </div>
+    26	          )}
+    27	
+    28	          <div class="hero-content">
+    29	            <p class="hero-eyebrow hero-layer hero-layer--eyebrow">{slide.eyebrow}</p>
+    30	
+    31	            <h1 class="hero-layer hero-layer--title">{slide.title}</h1>
+    32	
+    33	            <p class="hero-description hero-layer hero-layer--description">
+    34	              {slide.description}
+    35	            </p>
+    36	
+    37	            <div class="hero-actions hero-layer hero-layer--actions">
+    38	              <a href={whatsappLink} class="hero-primary-cta">
+    39	                {slide.ctaLabel}
+    40	              </a>
+    41	
+    42	              <a href="#catalogo" class="hero-secondary-cta">
+    43	                {business.secondaryCta}
+    44	              </a>
+    45	            </div>
+    46	          </div>
+    47	
+    48	          {slide.imageRight && (
+    49	            <div class="hero-visual hero-visual--right" aria-hidden="true">
+    50	              <Picture
+    51	                src={slide.imageRight}
+    52	                alt=""
+    53	                formats={['avif', 'webp']}
+    54	                widths={[360, 520, 720, 920]}
+    55	                sizes="(min-width: 1024px) 34vw, 88vw"
+    56	                loading="eager"
+    57	              />
+    58	            </div>
+    59	          )}
+    60	        </article>
+    61	      ))
+    62	    }
+    63	  </div>
+    64	</section>
+
+=== 5. DATA HERO SLIDES ===
+     1	import type { ImageMetadata } from 'astro';
+     2	
+     3	import albumLeft from '../assets/hero/album-left.png';
+     4	import albumRight from '../assets/hero/album-right.png';
+     5	
+     6	export type HeroSlideLayout = 'center-dual' | 'text-left' | 'text-right';
+     7	
+     8	export type HeroSlide = {
+     9	  id: string;
+    10	  eyebrow: string;
+    11	  title: string;
+    12	  description: string;
+    13	  ctaLabel: string;
+    14	  imageLeft?: ImageMetadata;
+    15	  imageRight?: ImageMetadata;
+    16	  layout: HeroSlideLayout;
+    17	};
+    18	
+    19	export const heroSlides: HeroSlide[] = [
+    20	  {
+    21	    id: 'hero-01',
+    22	    eyebrow: 'Stock limitado · consulta directa',
+    23	    title: 'Encuentra tu álbum K-pop antes de que se agote',
+    24	    description:
+    25	      'Mira productos seleccionados, confirma disponibilidad por WhatsApp y coordina tu compra sin carrito ni pasos innecesarios.',
+    26	    ctaLabel: 'Consultar disponibilidad',
+    27	    imageLeft: albumLeft,
+    28	    imageRight: albumRight,
+    29	    layout: 'center-dual',
+    30	  },
+    31	];
+
+=== 6. LANDING CSS ACTUAL ===
+     1	:root {
+     2	  --hero-bg: #09030d;
+     3	  --hero-text: #ffffff;
+     4	  --hero-muted: #d7d1dc;
+     5	  --hero-pink: #ec4899;
+     6	  --hero-pink-strong: #ff3ea5;
+     7	  --hero-violet: #7c3aed;
+     8	  --hero-panel: rgba(255, 255, 255, 0.08);
+     9	}
+    10	
+    11	.landing-hero {
+    12	  position: relative;
+    13	  min-height: 100svh;
+    14	  overflow: hidden;
+    15	  background: var(--hero-bg);
+    16	  color: var(--hero-text);
+    17	  font-family:
+    18	    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    19	    sans-serif;
+    20	}
+    21	
+    22	.landing-hero::before {
+    23	  content: "";
+    24	  position: absolute;
+    25	  inset: -18%;
+    26	  background:
+    27	    radial-gradient(circle at 50% 18%, rgba(236, 72, 153, 0.28), transparent 28%),
+    28	    radial-gradient(circle at 18% 72%, rgba(124, 58, 237, 0.22), transparent 28%),
+    29	    radial-gradient(circle at 84% 72%, rgba(236, 72, 153, 0.18), transparent 28%);
+    30	  pointer-events: none;
+    31	}
+    32	
+    33	.landing-hero::after {
+    34	  content: "";
+    35	  position: absolute;
+    36	  inset: 0;
+    37	  background:
+    38	    linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.42)),
+    39	    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+    40	  background-size: auto, 6rem 100%;
+    41	  opacity: 0.5;
+    42	  pointer-events: none;
+    43	}
+    44	
+    45	.hero-carousel {
+    46	  position: relative;
+    47	  z-index: 1;
+    48	  display: grid;
+    49	  grid-auto-flow: column;
+    50	  grid-auto-columns: 100%;
+    51	  min-height: 100svh;
+    52	  overflow-x: auto;
+    53	  scroll-snap-type: x mandatory;
+    54	  scrollbar-width: none;
+    55	}
+    56	
+    57	.hero-carousel::-webkit-scrollbar {
+    58	  display: none;
+    59	}
+    60	
+    61	.hero-slide {
+    62	  position: relative;
+    63	  display: grid;
+    64	  min-height: 100svh;
+    65	  padding: 2.5rem 1.25rem 0;
+    66	  scroll-snap-align: start;
+    67	}
+    68	
+    69	.hero-content {
+    70	  position: relative;
+    71	  z-index: 3;
+    72	  align-self: start;
+    73	  max-width: 34rem;
+    74	}
+    75	
+    76	.hero-eyebrow {
+    77	  margin: 0 0 0.85rem;
+    78	  color: #ff91d2;
+    79	  font-size: 0.72rem;
+    80	  font-weight: 900;
+    81	  letter-spacing: 0.14em;
+    82	  text-transform: uppercase;
+    83	}
+    84	
+    85	.hero-content h1 {
+    86	  margin: 0;
+    87	  max-width: 11ch;
+    88	  font-size: clamp(2.55rem, 12vw, 4rem);
+    89	  font-weight: 950;
+    90	  line-height: 0.9;
+    91	  letter-spacing: -0.055em;
+    92	}
+    93	
+    94	.hero-description {
+    95	  margin: 1rem 0 0;
+    96	  max-width: 31rem;
+    97	  color: var(--hero-muted);
+    98	  font-size: 0.98rem;
+    99	  font-weight: 600;
+   100	  line-height: 1.6;
+   101	}
+   102	
+   103	.hero-actions {
+   104	  display: grid;
+   105	  gap: 0.8rem;
+   106	  margin-top: 1.25rem;
+   107	}
+   108	
+   109	.hero-primary-cta,
+   110	.hero-secondary-cta {
+   111	  display: inline-flex;
+   112	  min-height: 3.15rem;
+   113	  align-items: center;
+   114	  justify-content: center;
+   115	  border-radius: 999px;
+   116	  padding: 0.85rem 1.15rem;
+   117	  font-size: 0.95rem;
+   118	  font-weight: 900;
+   119	  text-align: center;
+   120	  text-decoration: none;
+   121	}
+   122	
+   123	.hero-primary-cta {
+   124	  background: linear-gradient(135deg, var(--hero-pink-strong), var(--hero-pink));
+   125	  color: #ffffff;
+   126	  box-shadow: 0 1rem 3rem rgba(236, 72, 153, 0.38);
+   127	}
+   128	
+   129	.hero-secondary-cta {
+   130	  background: var(--hero-panel);
+   131	  color: #ffffff;
+   132	  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+   133	}
+   134	
+   135	.hero-visual {
+   136	  position: relative;
+   137	  z-index: 2;
+   138	  display: flex;
+   139	  align-items: flex-end;
+   140	  justify-content: center;
+   141	  align-self: end;
+   142	  width: 100%;
+   143	  min-height: 34svh;
+   144	  margin-top: 1rem;
+   145	  overflow: visible;
+   146	}
+   147	
+   148	.hero-visual--right {
+   149	  display: none;
+   150	}
+   151	
+   152	.hero-visual picture,
+   153	.hero-visual img {
+   154	  display: block;
+   155	}
+   156	
+   157	.hero-visual img {
+   158	  width: auto;
+   159	  max-width: 92vw;
+   160	  max-height: 42svh;
+   161	  object-fit: contain;
+   162	  object-position: center bottom;
+   163	  filter: drop-shadow(0 1.5rem 2.5rem rgba(236, 72, 153, 0.22));
+   164	}
+   165	
+   166	@media (min-width: 760px) {
+   167	  .hero-slide {
+   168	    padding-inline: 2rem;
+   169	  }
+   170	
+   171	  .hero-content {
+   172	    justify-self: center;
+   173	    text-align: center;
+   174	  }
+   175	
+   176	  .hero-actions {
+   177	    grid-template-columns: repeat(2, minmax(0, max-content));
+   178	    justify-content: center;
+   179	  }
+   180	
+   181	  .hero-visual img {
+   182	    max-height: 44svh;
+   183	  }
+   184	}
+   185	
+   186	@media (min-width: 1024px) {
+   187	  .hero-slide {
+   188	    grid-template-columns: minmax(16rem, 1fr) minmax(30rem, 0.96fr) minmax(16rem, 1fr);
+   189	    align-items: end;
+   190	    gap: 1rem;
+   191	    padding: 4rem max(2rem, calc((100vw - 1180px) / 2)) 2rem;
+   192	  }
+   193	
+   194	  .hero-content {
+   195	    grid-column: 2;
+   196	    align-self: center;
+   197	    justify-self: center;
+   198	    max-width: 38rem;
+   199	    padding-bottom: 2rem;
+   200	    text-align: center;
+   201	  }
+   202	
+   203	  .hero-content h1 {
+   204	    max-width: 11ch;
+   205	    font-size: clamp(3.9rem, 5.15vw, 5.8rem);
+   206	  }
+   207	
+   208	  .hero-description {
+   209	    margin-inline: auto;
+   210	  }
+   211	
+   212	  .hero-actions {
+   213	    margin-top: 1.15rem;
+   214	  }
+   215	
+   216	  .hero-visual {
+   217	    min-height: 0;
+   218	    margin-top: 0;
+   219	  }
+   220	
+   221	  .hero-visual img {
+   222	    height: 72svh;
+   223	    max-height: 45rem;
+   224	    max-width: none;
+   225	  }
+   226	
+   227	  .hero-visual--left {
+   228	    grid-column: 1;
+   229	    justify-self: end;
+   230	  }
+   231	
+   232	  .hero-visual--left img {
+   233	    transform: translateX(1.25rem);
+   234	  }
+   235	
+   236	  .hero-visual--right {
+   237	    display: flex;
+   238	    grid-column: 3;
+   239	    justify-self: start;
+   240	  }
+   241	
+   242	  .hero-visual--right img {
+   243	    height: 72svh;
+   244	    transform: translateX(-1.25rem);
+   245	  }
+   246	}
+   247	
+   248	/* HERO 03 - CTA con espacio y presencia */
+   249	.hero-actions {
+   250	  gap: 1rem;
+   251	  margin-top: 1.6rem;
+   252	}
+   253	
+   254	.hero-primary-cta,
+   255	.hero-secondary-cta {
+   256	  min-width: min(100%, 14rem);
+   257	  padding-inline: 1.6rem;
+   258	}
+   259	
+   260	@media (min-width: 760px) {
+   261	  .hero-actions {
+   262	    gap: 1rem;
+   263	  }
+   264	}
+   265	
+   266	@media (min-width: 1024px) {
+   267	  .hero-actions {
+   268	    gap: 1.15rem;
+   269	    margin-top: 1.45rem;
+   270	  }
+   271	
+   272	  .hero-primary-cta,
+   273	  .hero-secondary-cta {
+   274	    min-width: 13.5rem;
+   275	  }
+   276	}
+   277	
+   278	/* HERO 03B - CTA interactivo */
+   279	.hero-actions {
+   280	  gap: 1rem;
+   281	  margin-top: 1.6rem;
+   282	}
+   283	
+   284	.hero-primary-cta,
+   285	.hero-secondary-cta {
+   286	  position: relative;
+   287	  isolation: isolate;
+   288	  overflow: hidden;
+   289	  min-width: min(100%, 14.5rem);
+   290	  border: 0;
+   291	  transform: translateZ(0);
+   292	}
+   293	
+   294	.hero-primary-cta::before,
+   295	.hero-secondary-cta::before {
+   296	  content: "";
+   297	  position: absolute;
+   298	  inset: 0;
+   299	  z-index: -1;
+   300	  opacity: 0;
+   301	  transition:
+   302	    opacity 220ms ease,
+   303	    transform 220ms ease;
+   304	}
+   305	
+   306	.hero-primary-cta::before {
+   307	  background:
+   308	    linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.32) 45%, transparent 68%);
+   309	  transform: translateX(-120%);
+   310	}
+   311	
+   312	.hero-secondary-cta::before {
+   313	  background: rgba(255, 255, 255, 0.12);
+   314	}
+   315	
+   316	.hero-primary-cta:hover,
+   317	.hero-secondary-cta:hover {
+   318	  transform: translateY(-3px) scale(1.02);
+   319	}
+   320	
+
+=== 7. ANIMATIONS CSS ACTUAL ===
+     1	@keyframes heroLightMove {
+     2	  0% {
+     3	    opacity: 0.72;
+     4	    transform: translate3d(-1%, 0, 0) scale(1);
+     5	  }
+     6	
+     7	  50% {
+     8	    opacity: 1;
+     9	    transform: translate3d(1.2%, -1%, 0) scale(1.035);
+    10	  }
+    11	
+    12	  100% {
+    13	    opacity: 0.72;
+    14	    transform: translate3d(-1%, 0, 0) scale(1);
+    15	  }
+    16	}
+    17	
+    18	@keyframes heroLayerIn {
+    19	  from {
+    20	    opacity: 0;
+    21	    transform: translateY(1rem);
+    22	  }
+    23	
+    24	  to {
+    25	    opacity: 1;
+    26	    transform: translateY(0);
+    27	  }
+    28	}
+    29	
+    30	@keyframes heroVisualIn {
+    31	  from {
+    32	    opacity: 0;
+    33	    transform: translateY(1.8rem);
+    34	  }
+    35	
+    36	  to {
+    37	    opacity: 1;
+    38	    transform: translateY(0);
+    39	  }
+    40	}
+    41	
+    42	@keyframes heroFloatSoft {
+    43	  0%,
+    44	  100% {
+    45	    translate: 0 0;
+    46	  }
+    47	
+    48	  50% {
+    49	    translate: 0 -0.45rem;
+    50	  }
+    51	}
+    52	
+    53	.landing-hero::before {
+    54	  animation: heroLightMove 8s ease-in-out infinite;
+    55	}
+    56	
+    57	.hero-layer {
+    58	  opacity: 0;
+    59	  animation: heroLayerIn 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    60	}
+    61	
+    62	.hero-layer--eyebrow {
+    63	  animation-delay: 80ms;
+    64	}
+    65	
+    66	.hero-layer--title {
+    67	  animation-delay: 170ms;
+    68	}
+    69	
+    70	.hero-layer--description {
+    71	  animation-delay: 280ms;
+    72	}
+    73	
+    74	.hero-layer--actions {
+    75	  animation-delay: 390ms;
+    76	}
+    77	
+    78	.hero-visual--left,
+    79	.hero-visual--right {
+    80	  animation:
+    81	    heroVisualIn 820ms cubic-bezier(0.16, 1, 0.3, 1) both,
+    82	    heroFloatSoft 5.4s ease-in-out 1.2s infinite;
+    83	}
+    84	
+    85	.hero-visual--left {
+    86	  animation-delay: 130ms, 1.2s;
+    87	}
+    88	
+    89	.hero-visual--right {
+    90	  animation-delay: 260ms, 1.35s;
+    91	}
+    92	
+    93	@media (prefers-reduced-motion: reduce) {
+    94	  .landing-hero::before,
+    95	  .hero-layer,
+    96	  .hero-visual--left,
+    97	  .hero-visual--right {
+    98	    animation: none;
+    99	    opacity: 1;
+   100	  }
+   101	}
+
+=== 8. WHATSAPP LINK ===
+     1	import { business } from '../../data/business';
+     2	import type { Product } from '../../data/products';
+     3	
+     4	export function buildWhatsAppLink(message: string) {
+     5	  const encodedMessage = encodeURIComponent(message);
+     6	  return `https://wa.me/${business.whatsapp}?text=${encodedMessage}`;
+     7	}
+     8	
+     9	export function buildGeneralWhatsAppLink() {
+    10	  return buildWhatsAppLink(
+    11	    `Hola, quiero consultar sobre ${business.niche}.`
+    12	  );
+    13	}
+    14	
+    15	export function buildProductWhatsAppLink(product: Product) {
+    16	  return buildWhatsAppLink(
+    17	    `Hola, quiero consultar por el producto: ${product.artist} - ${product.name}.`
+    18	  );
+    19	}
+
+=== 9. TRAZABILIDAD ACTUAL ===
+     1	# Trazabilidad - Landing CRO Fase 2
+     2	
+     3	## Contexto Del Producto
+     4	
+     5	Producto:
+     6	Landing CRO comercial optimizada con Astro + Tailwind.
+     7	
+     8	Objetivo:
+     9	Crear una landing reutilizable para negocios que venden por WhatsApp, con catálogo limitado, CTA directo, animaciones CSS avanzadas y medición CRO básica.
+    10	
+    11	Límite principal:
+    12	No es CMS, no es ecommerce, no tiene backend, no tiene carrito y no tiene pasarela de pago.
+    13	
+    14	## Decisiones Aprobadas
+    15	
+    16	| Fecha      | Decisión                                                                 | Estado   |
+    17	| ---------- | ------------------------------------------------------------------------ | -------- |
+    18	| 2026-09-28 | Trabajar Fase 2 como Landing CRO con techo de productos                  | Aprobado |
+    19	| 2026-09-28 | Usar Astro + Tailwind                                                    | Aprobado |
+    20	| 2026-09-28 | Separar arquitectura en pages, layouts, sections, data, scripts y styles | Aprobado |
+    21	| 2026-09-28 | Crear archivo de trazabilidad del proyecto                               | Aprobado |
+    22	
+    23	## Tarjetas
+    24	
+    25	### LANDING-CRO-FASE2-SETUP-01
+    26	
+    27	Estado: Cerrada
+    28	
+    29	Resultado:
+    30	
+    31	- Proyecto Astro creado en `/d/landing-cro`.
+    32	- Git iniciado.
+    33	- Dependencias instaladas.
+    34	
+    35	### LANDING-CRO-FASE2-SETUP-02
+    36	
+    37	Estado: Cerrada
+    38	
+    39	Resultado:
+    40	
+    41	- Tailwind instalado.
+    42	- `src/styles/global.css` importado en `src/pages/index.astro`.
+    43	- Tailwind validado visualmente.
+    44	
+    45	### LANDING-CRO-FASE2-ARCH-01
+    46	
+    47	Estado: Cerrada
+    48	
+    49	Resultado:
+    50	
+    51	- Carpetas base creadas:
+    52	  - `src/components/ui`
+    53	  - `src/components/landing`
+    54	  - `src/sections`
+    55	  - `src/data`
+    56	  - `src/scripts/cro`
+    57	  - `src/scripts/whatsapp`
+    58	  - `src/layouts`
+    59	
+    60	### LANDING-CRO-FASE2-ARCH-02
+    61	
+    62	Estado: Cerrada
+    63	
+    64	Resultado:
+    65	
+    66	- Archivos base creados:
+    67	  - `src/layouts/LandingLayout.astro`
+    68	  - `src/sections/HeroSection.astro`
+    69	  - `src/sections/CatalogSection.astro`
+    70	  - `src/sections/TrustSection.astro`
+    71	  - `src/sections/HowToBuySection.astro`
+    72	  - `src/sections/FaqSection.astro`
+    73	  - `src/sections/FinalCtaSection.astro`
+    74	  - `src/data/business.ts`
+    75	  - `src/data/products.ts`
+    76	  - `src/data/faqs.ts`
+    77	  - `src/scripts/cro/events.ts`
+    78	  - `src/scripts/whatsapp/links.ts`
+    79	  - `src/styles/animations.css`
+    80	  - `src/styles/landing.css`
+    81	
+    82	### LANDING-CRO-FASE2-ARCH-03
+    83	
+    84	Estado: Aprobada
+    85	
+    86	Resultado:
+    87	
+    88	- Responsabilidades de archivos definidas.
+    89	- Pendiente implementar contenido base.
+    90	
+    91	## Siguiente Tarjeta
+    92	
+    93	### LANDING-CRO-FASE2-DATA-01
+    94	
+    95	Título:
+    96	Crear datos base del negocio, productos demo, FAQs, links de WhatsApp y eventos CRO.
+    97	
+    98	Estado:
+    99	Pendiente
+   100	
+   101	### LANDING-CRO-FASE2-DATA-01
+   102	
+   103	Estado: Cerrada
+   104	
+   105	Resultado:
+   106	
+   107	- Se creó `src/data/business.ts` con datos base del negocio.
+   108	- Se creó `src/data/products.ts` con catálogo demo limitado.
+   109	- Se creó `src/data/faqs.ts` con preguntas frecuentes.
+   110	- Se creó `src/scripts/whatsapp/links.ts` para generar enlaces WhatsApp.
+   111	- Se creó `src/scripts/cro/events.ts` para nombres de eventos CRO y helper básico.
+   112	
+   113	Evidencia:
+   114	
+   115	- `npm run build` ejecutado correctamente.
+   116	- Resultado: 1 página estática generada.
+   117	
+   118	### LANDING-CRO-FASE2-LAYOUT-01
+   119	
+   120	Estado: Cerrada
+   121	
+   122	Resultado:
+   123	
+   124	- Se implementó `src/layouts/LandingLayout.astro`.
+   125	- Se conectó `src/pages/index.astro` con el layout base.
+   126	- Se conectaron las secciones:
+   127	  - `HeroSection`
+   128	  - `CatalogSection`
+   129	  - `TrustSection`
+   130	  - `HowToBuySection`
+   131	  - `FaqSection`
+   132	  - `FinalCtaSection`
+   133	
+   134	Evidencia:
+   135	
+   136	- `npm run build` ejecutado correctamente.
+   137	- Resultado: 1 página estática generada.
+
+=== 10. TARJETA CREADA ===
+     1	# LANDING-CRO-FASE2-HERO-01
+     2	
+     3	## Título
+     4	
+     5	Consolidar primer slide del hero con animación de entrada, lectura clara y CTA visible hacia WhatsApp.
+     6	
+     7	## Product Management
+     8	
+     9	Problema:
+    10	El hero actual presenta la propuesta principal, pero se percibe estático y todavía no aprovecha la animación como recurso de enganche.
+    11	
+    12	Necesidad:
+    13	El primer viewport debe detener la atención, comunicar stock limitado y llevar a consulta por WhatsApp.
+    14	
+    15	Usuario afectado:
+    16	Visitante que llega desde redes sociales y decide rápidamente si sigue viendo productos o consulta.
+    17	
+    18	Por qué pertenece al MVP:
+    19	El hero es la primera zona de decisión de la landing. Si no comunica rápido, afecta la intención inicial.
+    20	
+    21	Qué queda fuera:
+    22	- Crear los slides 2 y 3.
+    23	- Agregar backend.
+    24	- Agregar CMS.
+    25	- Agregar carrito o checkout.
+    26	
+    27	## Marketing / CRO
+    28	
+    29	Etapa del embudo:
+    30	Landing -> intención.
+    31	
+    32	Fricción u objeción:
+    33	El visitante puede no detenerse a leer o no percibir urgencia/disponibilidad.
+    34	
+    35	Hipótesis:
+    36	Una entrada animada por capas, un hero más vivo y un CTA visible pueden aumentar la probabilidad de que el visitante lea y consulte por WhatsApp.
+    37	
+    38	Evento/métrica:
+    39	Clic en CTA principal hacia WhatsApp.
+    40	
+    41	Resultado esperado:
+    42	Hero visualmente más claro, con animación de entrada y CTA destacado.
+    43	
+    44	## Arquitectura / Técnica
+    45	
+    46	Componentes afectados:
+    47	- src/styles/landing.css
+    48	- src/styles/animations.css
+    49	
+    50	No cambia:
+    51	- src/sections/HeroSection.astro
+    52	- src/data/heroSlides.ts
+    53	- src/scripts/whatsapp/links.ts
+    54	
+    55	Criterios de aceptación:
+    56	- El hero conserva imagen izquierda, texto central e imagen derecha en desktop.
+    57	- El hero mantiene CTA principal visible.
+    58	- El hero tiene animación de entrada por capas.
+    59	- Las imágenes tienen movimiento suave posterior.
+    60	- Se respeta prefers-reduced-motion.
+    61	- No se toca catálogo ni lógica de WhatsApp.
+    62	- Build correcto.

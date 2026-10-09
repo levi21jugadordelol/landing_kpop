@@ -1,0 +1,339 @@
+=== AUDITORIA CASCADA RESPONSIVE HERO-01 ===
+
+=== 1. BLOQUES HERO EN LANDING.CSS ===
+66:.hero-slide {
+74:.hero-content {
+90:.hero-content h1 {
+99:.hero-description {
+108:.hero-actions {
+176:.hero-visual {
+189:.hero-visual--right {
+193:.hero-visual picture,
+194:.hero-visual img {
+198:.hero-visual img {
+210:  .hero-content h1 {
+214:  .hero-actions {
+226:  .hero-slide {
+230:  .hero-content {
+235:  .hero-description {
+239:  .hero-actions {
+243:  .hero-visual img {
+249:  .hero-slide {
+256:  .hero-content {
+265:  .hero-content h1 {
+271:  .hero-description {
+276:  .hero-actions {
+286:  .hero-visual {
+291:  .hero-visual img {
+297:  .hero-visual--left {
+302:  .hero-visual--left img {
+306:  .hero-visual--right {
+312:  .hero-visual--right img {
+316:  .hero-slide--text-left {
+320:  .hero-slide--text-left .hero-content {
+326:  .hero-slide--text-left .hero-description {
+330:  .hero-slide--text-left .hero-actions {
+334:  .hero-slide--text-left .hero-visual--right {
+338:  .hero-slide--text-right {
+342:  .hero-slide--text-right .hero-visual--left {
+346:  .hero-slide--text-right .hero-content {
+352:  .hero-slide--text-right .hero-description {
+356:  .hero-slide--text-right .hero-actions {
+362:  .hero-content h1 {
+366:  .hero-visual img {
+371:.hero-title {
+380:.hero-title-line {
+385:  .hero-title {
+391:  .hero-title {
+399:  .hero-title {
+404:.hero-title-line--emphasis {
+413:.hero-title-line--emphasis {
+420:/* LANDING-CRO-FASE2-HERO-01 responsive stable */
+426:  .hero-visual--left,
+427:  .hero-visual--right {
+431:  .hero-slide {
+437:  .hero-content {
+443:  .hero-title {
+449:  .hero-description {
+456:  .hero-actions {
+471:  .hero-visual--left,
+472:  .hero-visual--right {
+476:  .hero-slide {
+485:/* LANDING-CRO-FASE2-HERO-01 composition pass 05 readable */
+487:  .hero-slide {
+494:  .hero-content {
+501:  .hero-title {
+508:  .hero-description {
+515:  .hero-actions {
+523:  .hero-slide {
+530:  .hero-content {
+537:  .hero-title {
+544:  .hero-description {
+549:  .hero-actions {
+553:/* END LANDING-CRO-FASE2-HERO-01 composition pass 05 readable */
+
+=== 2. CSS HERO COMPLETO ZONA RESPONSIVE ===
+   400	    font-size: 5.65rem;
+   401	  }
+   402	}
+   403	
+   404	.hero-title-line--emphasis {
+   405	  color: #ffffff;
+   406	  text-shadow:
+   407	    0 0 1.5rem rgba(236, 72, 153, 0.5),
+   408	    0 0 3rem rgba(139, 92, 246, 0.28);
+   409	}
+   410	
+   411	/* LANDING-CRO-FASE2-HERO-01 ajuste UX:
+   412	   enfasis estatico leve para evitar efecto de foco parpadeando. */
+   413	.hero-title-line--emphasis {
+   414	  text-shadow:
+   415	    0 0 1rem rgba(236, 72, 153, 0.28),
+   416	    0 0 2rem rgba(139, 92, 246, 0.16);
+   417	}
+   418	
+   419	
+   420	/* LANDING-CRO-FASE2-HERO-01 responsive stable */
+   421	.hero-mobile-visual {
+   422	  display: none;
+   423	}
+   424	
+   425	@media (max-width: 759px) {
+   426	  .hero-visual--left,
+   427	  .hero-visual--right {
+   428	    display: none;
+   429	  }
+   430	
+   431	  .hero-slide {
+   432	    align-content: end;
+   433	    min-height: 100svh;
+   434	    padding: 1.75rem 1rem 1.05rem;
+   435	  }
+   436	
+   437	  .hero-content {
+   438	    z-index: 3;
+   439	    max-width: 100%;
+   440	    align-self: end;
+   441	  }
+   442	
+   443	  .hero-title {
+   444	    max-width: 8.5ch;
+   445	    font-size: clamp(2.25rem, 12vw, 3.1rem);
+   446	    line-height: 0.9;
+   447	  }
+   448	
+   449	  .hero-description {
+   450	    max-width: 17rem;
+   451	    margin-top: 0.85rem;
+   452	    font-size: 0.8rem;
+   453	    line-height: 1.48;
+   454	  }
+   455	
+   456	  .hero-actions {
+   457	    width: min(100%, 18rem);
+   458	    gap: 0.75rem;
+   459	    margin-top: 1rem;
+   460	  }
+   461	
+   462	  .hero-primary-cta,
+   463	  .hero-secondary-cta {
+   464	    min-height: 2.75rem;
+   465	    padding: 0.72rem 1rem;
+   466	    font-size: 0.78rem;
+   467	  }
+   468	}
+   469	
+   470	@media (min-width: 760px) and (max-width: 1023px) {
+   471	  .hero-visual--left,
+   472	  .hero-visual--right {
+   473	    display: none;
+   474	  }
+   475	
+   476	  .hero-slide {
+   477	    align-content: center;
+   478	    padding-block: 4rem;
+   479	  }
+   480	}
+   481	
+   482	
+   483	
+   484	
+   485	/* LANDING-CRO-FASE2-HERO-01 composition pass 05 readable */
+   486	@media (max-width: 759px) {
+   487	  .hero-slide {
+   488	    min-height: 78svh;
+   489	    align-content: center;
+   490	    justify-items: center;
+   491	    padding: 1rem;
+   492	  }
+   493	
+   494	  .hero-content {
+   495	    width: min(100%, 21rem);
+   496	    max-width: 21rem;
+   497	    margin-inline: auto;
+   498	    text-align: center;
+   499	  }
+   500	
+   501	  .hero-title {
+   502	    max-width: 10.2ch;
+   503	    margin-inline: auto;
+   504	    font-size: clamp(1.9rem, 9.2vw, 2.55rem);
+   505	    line-height: 0.94;
+   506	  }
+   507	
+   508	  .hero-description {
+   509	    max-width: 18rem;
+   510	    margin: 0.7rem auto 0;
+   511	    font-size: 0.76rem;
+   512	    line-height: 1.42;
+   513	  }
+   514	
+   515	  .hero-actions {
+   516	    width: min(100%, 18rem);
+   517	    margin: 0.85rem auto 0;
+   518	    gap: 0.6rem;
+   519	  }
+   520	}
+   521	
+   522	@media (min-width: 760px) and (max-width: 1023px) {
+   523	  .hero-slide {
+   524	    min-height: 56svh;
+   525	    align-content: center;
+   526	    justify-items: center;
+   527	    padding: 2.25rem 2rem;
+   528	  }
+   529	
+   530	  .hero-content {
+   531	    width: min(100%, 40rem);
+   532	    max-width: 40rem;
+   533	    margin-inline: auto;
+   534	    text-align: center;
+   535	  }
+   536	
+   537	  .hero-title {
+   538	    max-width: 11ch;
+   539	    margin-inline: auto;
+   540	    font-size: clamp(2.8rem, 5.6vw, 3.65rem);
+   541	    line-height: 0.92;
+   542	  }
+   543	
+   544	  .hero-description {
+   545	    max-width: 31rem;
+   546	    margin-inline: auto;
+   547	  }
+   548	
+   549	  .hero-actions {
+   550	    justify-content: center;
+   551	  }
+   552	}
+   553	/* END LANDING-CRO-FASE2-HERO-01 composition pass 05 readable */
+
+=== 3. BLOQUES ACTIVOS / RESIDUALES ===
+485:/* LANDING-CRO-FASE2-HERO-01 composition pass 05 readable */
+553:/* END LANDING-CRO-FASE2-HERO-01 composition pass 05 readable */
+
+=== 4. MARKUP HERO ===
+     1	---
+     2	import { Picture } from 'astro:assets';
+     3	import { business } from '../data/business';
+     4	import { heroSlides } from '../data/heroSlides';
+     5	import { buildGeneralWhatsAppLink } from '../scripts/whatsapp/links';
+     6	
+     7	const whatsappLink = buildGeneralWhatsAppLink();
+     8	const emphasisTitleLines = new Set(['K-pop']);
+     9	---
+    10	
+    11	<section class="landing-hero" aria-label="Promociones principales">
+    12	  <div class="hero-carousel" aria-label="Carrusel principal">
+    13	    {
+    14	      heroSlides.map((slide) => (
+    15	        <article class={`hero-slide hero-slide--${slide.layout}`}>
+    16	          {slide.imageLeft && (
+    17	            <div class="hero-visual hero-visual--left" aria-hidden="true">
+    18	              <Picture
+    19	                src={slide.imageLeft}
+    20	                alt=""
+    21	                formats={['avif', 'webp']}
+    22	                widths={[360, 520, 720, 920]}
+    23	                sizes="(min-width: 1024px) 34vw, 88vw"
+    24	                loading="eager"
+    25	              />
+    26	            </div>
+    27	          )}
+    28	
+    29	          <div class="hero-content">
+    30	            <p class="hero-eyebrow hero-layer hero-layer--eyebrow">{slide.eyebrow}</p>
+    31	
+    32	            <h1 class="hero-title" aria-label={slide.title}>
+    33	              {
+    34	                slide.titleLines.map((line, index) => (
+    35	                  <span
+    36	                    class:list={[
+    37	                      'hero-title-line',
+    38	                      emphasisTitleLines.has(line) && 'hero-title-line--emphasis',
+    39	                    ]}
+    40	                    style={`--hero-title-line-index: ${index}`}
+    41	                    aria-hidden="true"
+    42	                  >
+    43	                    {line}
+    44	                  </span>
+    45	                ))
+    46	              }
+    47	            </h1>
+    48	
+    49	            <p class="hero-description hero-layer hero-layer--description">
+    50	              {slide.description}
+    51	            </p>
+    52	
+    53	            <div class="hero-actions hero-layer hero-layer--actions">
+    54	              <a href={whatsappLink} class="hero-primary-cta">
+    55	                {slide.ctaLabel}
+    56	              </a>
+    57	
+    58	              <a href="#catalogo" class="hero-secondary-cta">
+    59	                {business.secondaryCta}
+    60	              </a>
+    61	            </div>
+    62	          </div>
+    63	
+    64	          {slide.imageMobile && (
+    65	            <div class="hero-mobile-visual" aria-hidden="true">
+    66	              <Picture
+    67	                src={slide.imageMobile}
+    68	                alt=""
+    69	                formats={['avif', 'webp']}
+    70	                widths={[220, 320, 440]}
+    71	                sizes="42vw"
+    72	                loading="eager"
+    73	              />
+    74	            </div>
+    75	          )}
+    76	
+    77	          {slide.imageRight && (
+    78	            <div class="hero-visual hero-visual--right" aria-hidden="true">
+    79	              <Picture
+    80	                src={slide.imageRight}
+    81	                alt=""
+    82	                formats={['avif', 'webp']}
+    83	                widths={[360, 520, 720, 920]}
+    84	                sizes="(min-width: 1024px) 34vw, 88vw"
+    85	                loading="eager"
+    86	              />
+    87	            </div>
+    88	          )}
+    89	        </article>
+    90	      ))
+    91	    }
+    92	  </div>
+    93	</section>
+
+=== 5. ASSETS HERO REFERENCIADOS ===
+src/data/heroSlides.ts:3:import albumLeft from '../assets/hero/album-left.png';
+src/data/heroSlides.ts:4:import albumRight from '../assets/hero/album-right.png';
+src/data/heroSlides.ts:5:import heroMobile from '../assets/hero/hero_mobile_listo.png';
+
+=== 6. DECISION PROPUESTA ===
+0-639px: mobile real, texto centrado, CTA apilado, sin imagen.
+640-899px: tablet chica, texto centrado, CTA en fila, sin imagen.
+900-1023px: tablet grande, recuperar composicion mas horizontal o visuales controlados.
+>=1024px: desktop actual sin tocar.

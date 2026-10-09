@@ -1,0 +1,50 @@
+=== LIMPIEZA CSS HERO ===
+FECHA=Wed Sep 30 12:57:12 HPS 2026
+
+=== LANDING CSS - RESIDUALES MALOS ===
+421:.hero-mobile-visual {
+
+=== ANIMATIONS CSS - RESIDUALES MALOS ===
+
+=== BLOQUE RESPONSIVE ACTUAL ===
+400-    font-size: 5.65rem;
+401-  }
+402-}
+403-
+404-.hero-title-line--emphasis {
+405-  color: #ffffff;
+406-  text-shadow:
+407-    0 0 1.5rem rgba(236, 72, 153, 0.5),
+408-    0 0 3rem rgba(139, 92, 246, 0.28);
+409-}
+410-
+411-/* LANDING-CRO-FASE2-HERO-01 ajuste UX:
+412-   enfasis estatico leve para evitar efecto de foco parpadeando. */
+413-.hero-title-line--emphasis {
+414-  text-shadow:
+415-    0 0 1rem rgba(236, 72, 153, 0.28),
+416-    0 0 2rem rgba(139, 92, 246, 0.16);
+417-}
+418-
+419-
+420:/* LANDING-CRO-FASE2-HERO-01 responsive stable */
+421-.hero-mobile-visual {
+422-  display: none;
+423-}
+424-
+425-@media (max-width: 759px) {
+426-  .hero-visual--left,
+427-  .hero-visual--right {
+428-    display: none;
+429-  }
+430-
+431-  .hero-slide {
+432-    align-content: end;
+433-    min-height: 100svh;
+434-    padding: 1.75rem 1rem 1.05rem;
+435-  }
+436-
+437-  .hero-content {
+438-    z-index: 3;
+439-    max-width: 100%;
+440-    align-self: end;

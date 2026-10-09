@@ -1,0 +1,24 @@
+=== ALCANCE APROBADO - ANIMACION DE TITULO ===
+
+Tarjeta:
+LANDING-CRO-FASE2-HERO-01
+
+Decision:
+Se aprueba ampliar el alcance tecnico para tocar HeroSection.astro y heroSlides.ts.
+
+Motivo:
+La animacion por lineas/palabras del titulo requiere estructura HTML controlada. Solo con CSS sobre un texto plano no se puede animar cada linea de forma trazable y estable.
+
+Cambio permitido:
+- Agregar titleLines en src/data/heroSlides.ts.
+- Renderizar el titulo por lineas en src/sections/HeroSection.astro.
+- Animar cada linea desde CSS.
+- Mantener accesibilidad con aria-label en el h1.
+- Mantener CTA, WhatsApp, imagenes y layout general.
+
+Fuera de alcance:
+- Cambiar copy.
+- Crear slide 2 y 3.
+- Tocar catalogo.
+- Tocar backend/CMS/ecommerce.
+- Declarar mejora CRO sin datos.

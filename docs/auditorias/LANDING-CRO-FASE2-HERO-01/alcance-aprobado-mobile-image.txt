@@ -1,0 +1,26 @@
+=== ALCANCE APROBADO - IMAGEN MOBILE ===
+
+Tarjeta:
+LANDING-CRO-FASE2-HERO-01
+
+Decision:
+Se aprueba usar una imagen especifica para mobile: hero_mobile_listo.png.
+
+Motivo:
+La composicion mobile anterior mostraba la imagen grande arriba, desplazaba el mensaje y hacia que el CTA aparezca tarde. En mobile se necesita composicion propia: texto visible + CTA + imagen de apoyo al costado.
+
+Imagen confirmada:
+src/assets/hero/hero_mobile_listo.png
+
+Cambio permitido:
+- Agregar imageMobile al modelo de heroSlides.
+- Importar hero_mobile_listo.png.
+- Renderizar imagen mobile solo en mobile.
+- Ajustar composicion mobile con texto e imagen al costado.
+- Mantener desktop intacto.
+
+Fuera de alcance:
+- Tocar CTA.
+- Crear slide 2 y 3.
+- Tocar catalogo.
+- Tocar backend/CMS/ecommerce.

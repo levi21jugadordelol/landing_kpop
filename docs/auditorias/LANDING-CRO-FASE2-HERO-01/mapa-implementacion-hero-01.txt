@@ -1,0 +1,44 @@
+=== MAPA DE IMPLEMENTACION LANDING-CRO-FASE2-HERO-01 ===
+
+PREGUNTA:
+Que cambio minimo permite mejorar el primer slide del hero con animacion, lectura clara y CTA visible sin romper arquitectura?
+
+HALLAZGOS CONFIRMADOS:
+- HeroSection.astro ya contiene la estructura necesaria.
+- heroSlides.ts ya define el primer slide.
+- links.ts ya genera el CTA general hacia WhatsApp.
+- landing.css contiene reglas historicas acumuladas del hero.
+- animations.css contiene animaciones basicas, pero no una entrada por capas suficientemente clara ni brillo sutil de CTA.
+
+ARCHIVOS QUE CAMBIAN:
+- src/styles/landing.css
+- src/styles/animations.css
+- docs/trazabilidad-landing-cro-fase2.md
+
+ARCHIVOS QUE NO CAMBIAN:
+- src/sections/HeroSection.astro
+- src/data/heroSlides.ts
+- src/scripts/whatsapp/links.ts
+- src/pages/index.astro
+- src/layouts/LandingLayout.astro
+
+CAMBIO EXACTO:
+- Consolidar estilos del hero en landing.css para eliminar capas HERO 03/03B/03C/03D.
+- Mantener layout desktop con imagen izquierda, texto central e imagen derecha.
+- Mantener mobile-first con contenido y CTA visibles.
+- Mejorar animacion por capas en animations.css.
+- Agregar brillo sutil al CTA principal.
+- Mantener prefers-reduced-motion.
+
+FUERA DE ALCANCE:
+- Crear slide 2 y slide 3.
+- Cambiar copy.
+- Cambiar imagenes.
+- Tocar catalogo.
+- Agregar CMS/backend/ecommerce.
+- Declarar mejora CRO sin datos.
+
+VALIDACION ESPERADA:
+- npm run build
+- git diff --check
+- revision visual mobile/desktop

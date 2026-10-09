@@ -1,0 +1,27 @@
+---
+import { business } from '../data/business';
+---
+
+<section class="landing-section landing-section--trust">
+  <div class="section-shell">
+    <div class="section-heading">
+      <p class="section-eyebrow">Confianza</p>
+      <h2>Compra con información clara</h2>
+      <p>
+        Antes de separar un álbum, resuelve las dudas que normalmente frenan una
+        compra por redes sociales.
+      </p>
+    </div>
+
+    <div class="trust-grid">
+      {
+        business.trustPoints.map((point, index) => (
+          <article class="trust-card">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <p>{point}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

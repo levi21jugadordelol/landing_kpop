@@ -1,0 +1,93 @@
+---
+import { Picture } from 'astro:assets';
+import { business } from '../data/business';
+import { heroSlides } from '../data/heroSlides';
+import { buildGeneralWhatsAppLink } from '../scripts/whatsapp/links';
+
+const whatsappLink = buildGeneralWhatsAppLink();
+const isEmphasisTitleLine = (line: string) => line.includes('K-pop');
+---
+
+<section class="landing-hero" aria-label="Promociones principales">
+  <div class="hero-carousel" aria-label="Carrusel principal">
+    {
+      heroSlides.map((slide) => (
+        <article class={`hero-slide hero-slide--${slide.layout}`}>
+          {slide.imageLeft && (
+            <div class="hero-visual hero-visual--left" aria-hidden="true">
+              <Picture
+                src={slide.imageLeft}
+                alt=""
+                formats={['avif', 'webp']}
+                widths={[360, 520, 720, 920]}
+                sizes="(min-width: 1024px) 34vw, 88vw"
+                loading="eager"
+              />
+            </div>
+          )}
+
+          <div class="hero-content">
+            <p class="hero-eyebrow hero-layer hero-layer--eyebrow">{slide.eyebrow}</p>
+
+            <h1 class="hero-title" aria-label={slide.title}>
+              {
+                slide.titleLines.map((line, index) => (
+                  <span
+                    class:list={[
+                      'hero-title-line',
+                      isEmphasisTitleLine(line) && 'hero-title-line--emphasis',
+                    ]}
+                    style={`--hero-title-line-index: ${index}`}
+                    aria-hidden="true"
+                  >
+                    {line}
+                  </span>
+                ))
+              }
+            </h1>
+
+            <p class="hero-description hero-layer hero-layer--description">
+              {slide.description}
+            </p>
+
+            <div class="hero-actions hero-layer hero-layer--actions">
+              <a href={whatsappLink} class="hero-primary-cta">
+                {slide.ctaLabel}
+              </a>
+
+              <a href="#catalogo" class="hero-secondary-cta">
+                {business.secondaryCta}
+              </a>
+            </div>
+          </div>
+
+          {slide.imageMobile && (
+            <div class="hero-mobile-visual" aria-hidden="true">
+              <Picture
+                src={slide.imageMobile}
+                alt=""
+                formats={['avif', 'webp']}
+                widths={[220, 320, 440]}
+                sizes="42vw"
+                loading="eager"
+              />
+            </div>
+          )}
+
+          {slide.imageRight && (
+            <div class="hero-visual hero-visual--right" aria-hidden="true">
+              <Picture
+                src={slide.imageRight}
+                alt=""
+                formats={['avif', 'webp']}
+                widths={[360, 520, 720, 920]}
+                sizes="(min-width: 1024px) 34vw, 88vw"
+                loading="eager"
+              />
+            </div>
+          )}
+        </article>
+      ))
+    }
+  </div>
+</section>

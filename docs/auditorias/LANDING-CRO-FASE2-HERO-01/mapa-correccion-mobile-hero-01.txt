@@ -1,0 +1,26 @@
+=== MAPA CORRECCION MOBILE LANDING-CRO-FASE2-HERO-01 ===
+
+Problema confirmado:
+La composicion mobile actual comprime el texto, usa una imagen vertical como elemento lateral completo y deja un CTA demasiado pesado.
+
+Hallazgos:
+- hero_mobile_listo.png mide 1200 x 2133.
+- .hero-content en mobile tiene max-width: 68%, comprimiendo el texto.
+- .hero-mobile-visual esta como elemento lateral pequeno pegado.
+- .hero-actions ocupa casi todo el ancho, generando CTA muy pesado.
+- Desktop no debe tocarse.
+
+Decision:
+Usar hero_mobile_listo.png como imagen decorativa recortada inferior derecha, no como columna visual.
+
+Cambio permitido:
+- Sobrescribir reglas mobile al final de landing.css.
+- Mantener HeroSection.astro y heroSlides.ts.
+- Mantener CTA y su animacion.
+- Mantener desktop intacto.
+
+Fuera de alcance:
+- Cambiar copy.
+- Cambiar CTA.
+- Crear slides 2 y 3.
+- Tocar catalogo/backend/CMS/ecommerce.

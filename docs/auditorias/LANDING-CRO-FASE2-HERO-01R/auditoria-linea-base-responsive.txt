@@ -1,0 +1,886 @@
+=== LANDING-CRO-FASE2-HERO-01R - LINEA BASE RESPONSIVE ===
+
+=== FECHA ===
+Sat Oct  3 11:09:03 HPS 2026
+
+=== RUTA ===
+/d/landing-cro
+
+=== GIT STATUS ===
+ M astro.config.mjs
+ M package-lock.json
+ M package.json
+ M src/pages/index.astro
+?? docs/
+?? src/assets/
+?? src/data/
+?? src/layouts/
+?? src/scripts/
+?? src/sections/
+?? src/styles/
+
+=== GITIGNORE ===
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+=== PACKAGE ===
+{
+  "name": "landing-cro",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.5",
+    "tailwindcss": "^4.3.3"
+  },
+  "allowScripts": {
+    "esbuild": true
+  }
+}
+
+=== HERO ASTRO ===
+---
+import { Picture } from 'astro:assets';
+import { business } from '../data/business';
+import { heroSlides } from '../data/heroSlides';
+import { buildGeneralWhatsAppLink } from '../scripts/whatsapp/links';
+
+const whatsappLink = buildGeneralWhatsAppLink();
+const emphasisTitleLines = new Set(['K-pop']);
+---
+
+<section class="landing-hero" aria-label="Promociones principales">
+  <div class="hero-carousel" aria-label="Carrusel principal">
+    {
+      heroSlides.map((slide) => (
+        <article class={`hero-slide hero-slide--${slide.layout}`}>
+          {slide.imageLeft && (
+            <div class="hero-visual hero-visual--left" aria-hidden="true">
+              <Picture
+                src={slide.imageLeft}
+                alt=""
+                formats={['avif', 'webp']}
+                widths={[360, 520, 720, 920]}
+                sizes="(min-width: 1024px) 34vw, 88vw"
+                loading="eager"
+              />
+            </div>
+          )}
+
+          <div class="hero-content">
+            <p class="hero-eyebrow hero-layer hero-layer--eyebrow">{slide.eyebrow}</p>
+
+            <h1 class="hero-title" aria-label={slide.title}>
+              {
+                slide.titleLines.map((line, index) => (
+                  <span
+                    class:list={[
+                      'hero-title-line',
+                      emphasisTitleLines.has(line) && 'hero-title-line--emphasis',
+                    ]}
+                    style={`--hero-title-line-index: ${index}`}
+                    aria-hidden="true"
+                  >
+                    {line}
+                  </span>
+                ))
+              }
+            </h1>
+
+            <p class="hero-description hero-layer hero-layer--description">
+              {slide.description}
+            </p>
+
+            <div class="hero-actions hero-layer hero-layer--actions">
+              <a href={whatsappLink} class="hero-primary-cta">
+                {slide.ctaLabel}
+              </a>
+
+              <a href="#catalogo" class="hero-secondary-cta">
+                {business.secondaryCta}
+              </a>
+            </div>
+          </div>
+
+          {slide.imageMobile && (
+            <div class="hero-mobile-visual" aria-hidden="true">
+              <Picture
+                src={slide.imageMobile}
+                alt=""
+                formats={['avif', 'webp']}
+                widths={[220, 320, 440]}
+                sizes="42vw"
+                loading="eager"
+              />
+            </div>
+          )}
+
+          {slide.imageRight && (
+            <div class="hero-visual hero-visual--right" aria-hidden="true">
+              <Picture
+                src={slide.imageRight}
+                alt=""
+                formats={['avif', 'webp']}
+                widths={[360, 520, 720, 920]}
+                sizes="(min-width: 1024px) 34vw, 88vw"
+                loading="eager"
+              />
+            </div>
+          )}
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+=== HERO DATA ===
+import type { ImageMetadata } from 'astro';
+
+import albumLeft from '../assets/hero/album-left.png';
+import albumRight from '../assets/hero/album-right.png';
+import heroMobile from '../assets/hero/hero_mobile_listo.png';
+
+export type HeroSlideLayout = 'center-dual' | 'text-left' | 'text-right';
+
+export type HeroSlide = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  titleLines: string[];
+  description: string;
+  ctaLabel: string;
+  imageLeft?: ImageMetadata;
+  imageRight?: ImageMetadata;
+  imageMobile?: ImageMetadata;
+  layout: HeroSlideLayout;
+};
+
+export const heroSlides: HeroSlide[] = [
+  {
+    id: 'hero-01',
+    eyebrow: 'Stock limitado · consulta directa',
+    title: 'Encuentra tu álbum K-pop antes de que se agote',
+    titleLines: ['Encuentra', 'tu álbum', 'K-pop', 'antes de', 'que se', 'agote'],
+    description:
+      'Mira productos seleccionados, confirma disponibilidad por WhatsApp y coordina tu compra sin carrito ni pasos innecesarios.',
+    ctaLabel: 'Consultar disponibilidad',
+    imageLeft: albumLeft,
+    imageRight: albumRight,
+    imageMobile: heroMobile,
+    layout: 'center-dual',
+  },
+];
+
+=== CSS HERO - UBICACIONES ===
+bash: rg: command not found
+
+=== CSS LANDING PARTE 1 ===
+:root {
+  --hero-bg: #09030d;
+  --hero-text: #ffffff;
+  --hero-muted: #ded7e6;
+  --hero-pink: #ec4899;
+  --hero-pink-soft: #f9a8d4;
+  --hero-pink-strong: #f43f9d;
+  --hero-panel: rgba(255, 255, 255, 0.08);
+  --hero-panel-strong: rgba(255, 255, 255, 0.14);
+}
+
+.landing-hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(236, 72, 153, 0.24),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 16% 76%,
+      rgba(139, 92, 246, 0.18),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 86% 72%,
+      rgba(244, 63, 157, 0.16),
+      transparent 26%
+    ),
+    var(--hero-bg);
+  color: var(--hero-text);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+.landing-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size:
+    6rem 100%,
+    100% 6rem;
+  opacity: 0.58;
+  pointer-events: none;
+}
+
+.landing-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 10% 8% 10%;
+  height: 8rem;
+  border-radius: 999px;
+  background: rgba(236, 72, 153, 0.2);
+  filter: blur(4rem);
+  pointer-events: none;
+}
+
+.hero-carousel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  min-height: 100svh;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.hero-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-slide {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  padding: 2.25rem 1.15rem 0;
+  scroll-snap-align: start;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  align-self: start;
+  max-width: 34rem;
+}
+
+.hero-eyebrow {
+  margin: 0 0 0.85rem;
+  color: var(--hero-pink-soft);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-content h1 {
+  margin: 0;
+  max-width: 10ch;
+  font-size: 3rem;
+  font-weight: 950;
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+
+.hero-description {
+  margin: 1rem 0 0;
+  max-width: 31rem;
+  color: var(--hero-muted);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.58;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.85rem;
+  margin-top: 1.25rem;
+}
+
+.hero-primary-cta,
+.hero-secondary-cta {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.82rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.hero-primary-cta {
+  position: relative;
+  overflow: hidden;
+  background: var(--hero-pink);
+  color: #ffffff;
+  box-shadow: 0 0.85rem 2.5rem rgba(236, 72, 153, 0.38);
+}
+
+.hero-primary-cta::after {
+  content: "";
+  position: absolute;
+  inset: -30% auto -30% -35%;
+  width: 32%;
+  rotate: 18deg;
+  background: rgba(255, 255, 255, 0.34);
+  filter: blur(0.5rem);
+  transform: translateX(-180%);
+}
+
+.hero-secondary-cta {
+  background: var(--hero-panel);
+  color: #fce7f3;
+  box-shadow: inset 0 0 0 1px rgba(252, 231, 243, 0.18);
+}
+
+.hero-primary-cta:hover,
+.hero-secondary-cta:hover {
+  transform: translateY(-2px);
+}
+
+.hero-primary-cta:hover {
+  background: var(--hero-pink-strong);
+  box-shadow: 0 1rem 3rem rgba(236, 72, 153, 0.48);
+}
+
+.hero-secondary-cta:hover {
+  background: var(--hero-panel-strong);
+  color: #ffffff;
+}
+
+.hero-visual {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  align-self: end;
+  width: 100%;
+  min-height: 34svh;
+  margin-top: 1rem;
+  overflow: visible;
+}
+
+.hero-visual--right {
+  display: none;
+}
+
+.hero-visual picture,
+.hero-visual img {
+  display: block;
+}
+
+.hero-visual img {
+  width: auto;
+  max-width: 92vw;
+  max-height: 42svh;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 1.4rem 2.5rem rgba(236, 72, 153, 0.22))
+    drop-shadow(0 0.35rem 1.5rem rgba(255, 255, 255, 0.08));
+}
+
+@media (min-width: 640px) {
+  .hero-content h1 {
+    font-size: 4rem;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .hero-primary-cta,
+  .hero-secondary-cta {
+    min-width: 12rem;
+  }
+}
+
+@media (min-width: 760px) {
+  .hero-slide {
+    padding-inline: 2rem;
+  }
+
+  .hero-content {
+    justify-self: center;
+    text-align: center;
+  }
+
+  .hero-description {
+    margin-inline: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+
+=== CSS LANDING PARTE 2 ===
+
+  .hero-visual img {
+    max-height: 44svh;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-slide {
+    grid-template-columns: minmax(14rem, 1fr) minmax(30rem, 0.94fr) minmax(
+        14rem,
+        1fr
+      );
+    align-items: end;
+    gap: 1.25rem;
+    padding: 4rem max(2rem, calc((100vw - 1180px) / 2)) 2rem;
+  }
+
+  .hero-content {
+    grid-column: 2;
+    align-self: center;
+    justify-self: center;
+    max-width: 39rem;
+    padding-bottom: 2rem;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    max-width: 10ch;
+    font-size: 5.25rem;
+    line-height: 0.93;
+  }
+
+  .hero-description {
+    max-width: 34rem;
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    gap: 1rem;
+    margin-top: 1.35rem;
+  }
+
+  .hero-primary-cta,
+  .hero-secondary-cta {
+    min-width: 12.25rem;
+  }
+
+  .hero-visual {
+    min-height: 0;
+    margin-top: 0;
+  }
+
+  .hero-visual img {
+    height: 68svh;
+    max-height: 42rem;
+    max-width: none;
+  }
+
+  .hero-visual--left {
+    grid-column: 1;
+    justify-self: end;
+  }
+
+  .hero-visual--left img {
+    transform: translateX(1rem) scale(0.96);
+  }
+
+  .hero-visual--right {
+    display: flex;
+    grid-column: 3;
+    justify-self: start;
+  }
+
+  .hero-visual--right img {
+    transform: translate(-1rem, 1.25rem) scale(1.02);
+  }
+
+  .hero-slide--text-left {
+    grid-template-columns: minmax(30rem, 0.95fr) minmax(14rem, 1fr);
+  }
+
+  .hero-slide--text-left .hero-content {
+    grid-column: 1;
+    justify-self: start;
+    text-align: left;
+  }
+
+  .hero-slide--text-left .hero-description {
+    margin-inline: 0;
+  }
+
+  .hero-slide--text-left .hero-actions {
+    justify-content: flex-start;
+  }
+
+  .hero-slide--text-left .hero-visual--right {
+    grid-column: 2;
+  }
+
+  .hero-slide--text-right {
+    grid-template-columns: minmax(14rem, 1fr) minmax(30rem, 0.95fr);
+  }
+
+  .hero-slide--text-right .hero-visual--left {
+    grid-column: 1;
+  }
+
+  .hero-slide--text-right .hero-content {
+    grid-column: 2;
+    justify-self: end;
+    text-align: left;
+  }
+
+  .hero-slide--text-right .hero-description {
+    margin-inline: 0;
+  }
+
+  .hero-slide--text-right .hero-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-content h1 {
+    font-size: 5.65rem;
+  }
+
+  .hero-visual img {
+    height: 70svh;
+  }
+}
+
+.hero-title {
+  margin: 0;
+  max-width: 10ch;
+  font-size: 3rem;
+  font-weight: 950;
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+
+.hero-title-line {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-title {
+    max-width: 10ch;
+    font-size: 5.25rem;
+    line-height: 0.93;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-title {
+    font-size: 5.65rem;
+  }
+}
+
+.hero-title-line--emphasis {
+  color: #ffffff;
+  text-shadow:
+    0 0 1.5rem rgba(236, 72, 153, 0.5),
+    0 0 3rem rgba(139, 92, 246, 0.28);
+}
+
+/* LANDING-CRO-FASE2-HERO-01 ajuste UX:
+   enfasis estatico leve para evitar efecto de foco parpadeando. */
+.hero-title-line--emphasis {
+  text-shadow:
+    0 0 1rem rgba(236, 72, 153, 0.28),
+    0 0 2rem rgba(139, 92, 246, 0.16);
+}
+
+/* LANDING-CRO-FASE2-HERO-01 responsive final */
+
+.hero-mobile-visual {
+  display: none;
+}
+
+/* Mobile real: sin imagen para proteger lectura */
+@media (max-width: 639px) {
+  .hero-visual--left,
+  .hero-visual--right,
+  .hero-mobile-visual {
+    display: none;
+  }
+
+  .hero-slide {
+    min-height: 82svh;
+    padding: 1rem;
+    align-content: center;
+    justify-items: center;
+  }
+
+  .hero-content {
+    width: min(100%, 20rem);
+    max-width: 20rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-title,
+  .hero-description {
+    margin-inline: auto;
+  }
+
+  .hero-title {
+    max-width: 9.4ch;
+    font-size: clamp(2rem, 10.2vw, 2.7rem);
+    line-height: 0.93;
+  }
+
+  .hero-description {
+    max-width: 17.5rem;
+    margin-top: 0.75rem;
+    font-size: 0.76rem;
+    line-height: 1.43;
+  }
+
+  .hero-actions {
+    width: min(100%, 18rem);
+    justify-content: center;
+    margin: 0.9rem auto 0;
+    gap: 0.65rem;
+  }
+}
+
+/* FIX FINAL TABLET HERO */
+@media (min-width: 640px) and (max-width: 1199px) {
+  .hero-slide {
+    display: flex;
+    min-height: 100svh;
+    padding: 2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.25rem;
+  }
+
+  .hero-content {
+    order: 1;
+    width: min(100%, 44rem);
+    max-width: 44rem;
+    margin: 1rem auto 0;
+    padding-bottom: 0;
+    text-align: center;
+    align-self: center;
+    justify-self: auto;
+  }
+
+  .hero-title,
+  .hero-content h1 {
+    max-width: 13ch;
+    margin-inline: auto;
+    font-size: clamp(2.7rem, 5.4vw, 4rem);
+    line-height: 0.94;
+  }
+
+  .hero-description {
+    max-width: 31rem;
+    margin-inline: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-visual--right,
+  .hero-mobile-visual {
+    display: none;
+  }
+
+  .hero-visual--left {
+    order: 2;
+    display: flex;
+    width: 100%;
+    min-height: 0;
+    margin-top: 0;
+    align-self: center;
+    align-items: flex-start;
+    justify-content: center;
+    justify-self: auto;
+  }
+
+  .hero-visual--left picture {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-visual--left img {
+    width: auto;
+    height: auto;
+    max-width: min(70vw, 28rem);
+    max-height: min(40svh, 26rem);
+    object-fit: contain;
+    object-position: center top;
+    transform: none;
+  }
+}
+
+/* FIX FINAL HERO BUTTONS */
+.hero-actions {
+  align-items: center;
+}
+
+.hero-primary-cta,
+.hero-secondary-cta {
+  width: auto;
+  min-width: 11.5rem;
+  min-height: 2.85rem;
+  padding: 0.7rem 1.15rem;
+  font-size: 0.84rem;
+  line-height: 1.1;
+}
+
+/* Mobile estrecho: columna, pero sin botones gigantes */
+@media (max-width: 519px) {
+  .hero-actions {
+    width: min(100%, 17rem);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    margin-inline: auto;
+  }
+
+  .hero-primary-cta,
+  .hero-secondary-cta {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Tablet y móviles anchos: botones en fila */
+@media (min-width: 520px) and (max-width: 1199px) {
+  .hero-actions {
+    width: auto;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.85rem;
+    margin-inline: auto;
+  }
+
+  .hero-primary-cta,
+  .hero-secondary-cta {
+    width: auto;
+    min-width: 11.5rem;
+  }
+}
+
+=== BUILD ACTUAL ===
+
+> landing-cro@0.0.1 build
+> astro build
+
+[2m11:09:11[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m11:09:12[22m [34m[types][39m Generated [2m267ms[22m
+[2m11:09:12[22m [34m[build][39m output: [34m"static"[39m
+[2m11:09:12[22m [34m[build][39m mode: [34m"static"[39m
+[2m11:09:12[22m [34m[build][39m directory: [34mD:\landing-cro\dist\[39m
+[2m11:09:12[22m [34m[build][39m Collecting build info...
+[2m11:09:12[22m [34m[build][39m [32m✓ Completed in 317ms.[39m
+[2m11:09:12[22m [34m[build][39m Building static entrypoints...
+[2m11:09:17[22m [34m[vite][39m [32m✓ built in 5.85s[39m
+[2m11:09:17[22m [34m[vite][39m [32m✓ built in 26ms[39m
+[2m11:09:17[22m [34m[build][39m Rearranging server assets...
+
+[42m[30m generating static routes [39m[49m
+[2m11:09:17[22m   [34m├─[39m [2m/index.html[22m [31m(+1.21s)[39m 
+[2m11:09:19[22m [32m✓ Completed in 1.23s.
+[39m
+[42m[30m generating optimized images [39m[49m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_1zM0E9.avif [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(1/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z1WHqL4.avif [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(2/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZsQyGL.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(3/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_Z1MpBic.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(4/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_1KnDQC.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(5/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZaqMaX.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(6/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_Z1tYOLo.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(7/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZRBpYT.png [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(8/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZChVLh.png [2m(reused cache entry)[22m [2m(+3ms)[22m [2m(9/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_Z1VPYmH.png [2m(reused cache entry)[22m [2m(+3ms)[22m [2m(10/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_Z1antQu.avif [2m(reused cache entry)[22m [2m(+20ms)[22m [2m(11/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_229wWz.avif [2m(reused cache entry)[22m [2m(+19ms)[22m [2m(12/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_UBD6w.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(13/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_ZSB6dv.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(14/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_ZwAPaJ.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(15/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_1PDrNm.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(16/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_2jbyyT.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(17/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_EUKYX.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(18/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_VH9CW.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(19/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_1dQotB.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(20/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_Z1oeq97.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(21/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_1io3td.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(22/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_21hRSN.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(23/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z9OpN3.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(24/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_2i4gwM.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(25/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z1EU1eS.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(26/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_Z2Rjfh.png [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(27/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_2jVWtK.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(28/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_ZcaFaK.png [2m(reused cache entry)[22m [2m(+3ms)[22m [2m(29/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_18k1FK.png [2m(reused cache entry)[22m [2m(+5ms)[22m [2m(30/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z1Eo9s1.png [2m(reused cache entry)[22m [2m(+3ms)[22m [2m(31/32)[22m
+[2m11:09:19[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_ZmHfyp.png [2m(reused cache entry)[22m [2m(+3ms)[22m [2m(32/32)[22m
+[2m11:09:19[22m [32m✓ Completed in 40ms.
+[39m
+[2m11:09:19[22m [34m[build][39m [32m✓ Completed in 7.20s.[39m
+[2m11:09:19[22m [34m[build][39m 1 page(s) built in [1m7.52s[22m
+[2m11:09:19[22m [34m[build][39m [1mComplete![22m

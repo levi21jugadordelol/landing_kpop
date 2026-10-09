@@ -1,0 +1,208 @@
+=== VALIDACION RESPONSIVE FINAL HERO-01 ===
+
+=== BLOQUE ACTIVO ===
+421:/* LANDING-CRO-FASE2-HERO-01 responsive final */
+422-.hero-mobile-visual {
+423-  display: none;
+424-}
+425-
+426-@media (max-width: 639px) {
+427-  .hero-visual--left,
+428-  .hero-visual--right {
+429-    display: none;
+430-  }
+431-
+432-  .hero-slide {
+433-    min-height: 82svh;
+434-    align-content: center;
+435-    justify-items: center;
+436-    padding: 1rem;
+437-  }
+438-
+439-  .hero-content {
+440-    width: min(100%, 20rem);
+441-    max-width: 20rem;
+442-    margin-inline: auto;
+443-    text-align: center;
+444-  }
+445-
+446-  .hero-title {
+447-    max-width: 9.4ch;
+448-    margin-inline: auto;
+449-    font-size: clamp(2rem, 10.2vw, 2.7rem);
+450-    line-height: 0.93;
+451-  }
+452-
+453-  .hero-description {
+454-    max-width: 17.5rem;
+455-    margin: 0.75rem auto 0;
+456-    font-size: 0.76rem;
+457-    line-height: 1.43;
+458-  }
+459-
+460-  .hero-actions {
+461-    width: min(100%, 18rem);
+462-    margin: 0.9rem auto 0;
+463-    gap: 0.65rem;
+464-  }
+465-
+466-  .hero-primary-cta,
+467-  .hero-secondary-cta {
+468-    min-height: 2.6rem;
+469-    padding: 0.68rem 0.9rem;
+470-    font-size: 0.74rem;
+471-  }
+472-}
+473-
+474-@media (min-width: 640px) and (max-width: 899px) {
+475-  .hero-visual--left,
+476-  .hero-visual--right {
+477-    display: none;
+478-  }
+479-
+480-  .hero-slide {
+481-    min-height: 58svh;
+482-    align-content: center;
+483-    justify-items: center;
+484-    padding: 2rem;
+485-  }
+486-
+487-  .hero-content {
+488-    width: min(100%, 38rem);
+489-    max-width: 38rem;
+490-    margin-inline: auto;
+491-    text-align: center;
+492-  }
+493-
+494-  .hero-title {
+495-    max-width: 10.8ch;
+496-    margin-inline: auto;
+497-    font-size: clamp(3rem, 6vw, 3.75rem);
+498-    line-height: 0.92;
+499-  }
+500-
+501-  .hero-description {
+502-    max-width: 29rem;
+503-    margin-inline: auto;
+504-  }
+505-
+506-  .hero-actions {
+507-    justify-content: center;
+508-  }
+509-}
+510-
+511-@media (min-width: 900px) and (max-width: 1023px) {
+512-  .hero-slide {
+513-    min-height: 60svh;
+514-    align-content: center;
+515-    padding: 2.5rem 2rem;
+516-  }
+517-
+518-  .hero-content {
+519-    z-index: 3;
+520-    width: min(100%, 34rem);
+521-    max-width: 34rem;
+522-    margin-inline: auto;
+523-    text-align: center;
+524-  }
+525-
+526-  .hero-title {
+527-    max-width: 10ch;
+528-    margin-inline: auto;
+529-    font-size: clamp(3rem, 5.2vw, 3.6rem);
+530-    line-height: 0.92;
+531-  }
+532-
+533-  .hero-description {
+534-    max-width: 29rem;
+535-    margin-inline: auto;
+536-  }
+537-
+538-  .hero-actions {
+539-    justify-content: center;
+540-  }
+541-
+542-  .hero-visual--left,
+543-  .hero-visual--right {
+544-    display: block;
+545-    width: clamp(8rem, 18vw, 12rem);
+546-    opacity: 0.72;
+547-  }
+548-
+549-  .hero-visual--left {
+550-    left: 1.25rem;
+551-  }
+552-
+553-  .hero-visual--right {
+554-    right: 1.25rem;
+555-  }
+556-}
+557:/* END LANDING-CRO-FASE2-HERO-01 responsive final */
+
+=== RESIDUALES EXPERIMENTALES ===
+
+=== DIFF CHECK ===
+warning: in the working copy of 'astro.config.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/pages/index.astro', LF will be replaced by CRLF the next time Git touches it
+
+=== BUILD ===
+
+> landing-cro@0.0.1 build
+> astro build
+
+[2m11:57:12[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m11:57:12[22m [34m[types][39m Generated [2m189ms[22m
+[2m11:57:12[22m [34m[build][39m output: [34m"static"[39m
+[2m11:57:12[22m [34m[build][39m mode: [34m"static"[39m
+[2m11:57:12[22m [34m[build][39m directory: [34mD:\landing-cro\dist\[39m
+[2m11:57:12[22m [34m[build][39m Collecting build info...
+[2m11:57:12[22m [34m[build][39m [32m✓ Completed in 237ms.[39m
+[2m11:57:12[22m [34m[build][39m Building static entrypoints...
+[2m11:57:12[22m [34m[vite][39m [32m✓ built in 285ms[39m
+[2m11:57:13[22m [34m[vite][39m [32m✓ built in 20ms[39m
+[2m11:57:13[22m [34m[build][39m Rearranging server assets...
+
+[42m[30m generating static routes [39m[49m
+[2m11:57:13[22m   [34m├─[39m [2m/index.html[22m [2m(+30ms)[22m 
+[2m11:57:13[22m [32m✓ Completed in 47ms.
+[39m
+[42m[30m generating optimized images [39m[49m
+[2m11:57:13[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_Z1antQu.avif [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(1/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_1zM0E9.avif [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(2/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z1WHqL4.avif [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(3/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_ZSB6dv.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(4/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZsQyGL.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(5/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_229wWz.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(6/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_1PDrNm.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(7/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_Z1MpBic.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(8/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_UBD6w.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(9/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_EUKYX.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(10/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_ZwAPaJ.avif [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(11/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_1KnDQC.webp [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(12/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZaqMaX.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(13/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_2jbyyT.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(14/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_VH9CW.webp [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(15/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_Z1oeq97.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(16/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_1dQotB.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(17/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_Z1tYOLo.webp [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(18/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_21hRSN.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(19/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_1io3td.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(20/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZRBpYT.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(21/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z9OpN3.webp [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(22/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_2i4gwM.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(23/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_ZChVLh.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(24/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z1EU1eS.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(25/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_Z2Rjfh.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(26/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-left.BZ1_Nzwj_Z1VPYmH.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(27/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_2jVWtK.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(28/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_ZcaFaK.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(29/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_Z1Eo9s1.png [2m(reused cache entry)[22m [2m(+1ms)[22m [2m(30/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/hero_mobile_listo.spi5WgdG_18k1FK.png [2m(reused cache entry)[22m [2m(+5ms)[22m [2m(31/32)[22m
+[2m11:57:13[22m   [32m▶[39m /_astro/album-right.DlvgHjr4_ZmHfyp.png [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(32/32)[22m
+[2m11:57:13[22m [32m✓ Completed in 19ms.
+[39m
+[2m11:57:13[22m [34m[build][39m [32m✓ Completed in 429ms.[39m
+[2m11:57:13[22m [34m[build][39m 1 page(s) built in [1m675ms[22m
+[2m11:57:13[22m [34m[build][39m [1mComplete![22m
