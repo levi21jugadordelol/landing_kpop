@@ -256,8 +256,8 @@
 
 .hero-visual--left img {
   width: auto;
-  height: clamp(17rem, 42svh, 22rem);
-  max-width: min(76vw, 23rem);
+  height: clamp(20rem, 48svh, 26rem);
+  max-width: min(82vw, 26rem);
   max-height: none;
   object-fit: contain;
   object-position: center bottom;
@@ -310,8 +310,8 @@
 
   .hero-visual--left img {
     width: auto;
-    height: clamp(19rem, 42svh, 24rem);
-    max-width: min(62vw, 27rem);
+    height: clamp(23rem, 48svh, 29rem);
+    max-width: min(70vw, 31rem);
     max-height: none;
     object-fit: contain;
     object-position: center bottom;
@@ -365,8 +365,8 @@
 
   .hero-visual--left img {
     width: auto;
-    height: clamp(21rem, 45svh, 28rem);
-    max-width: min(66vw, 29rem);
+    height: clamp(25rem, 50svh, 31rem);
+    max-width: min(74vw, 33rem);
     max-height: none;
     transform: none;
   }
@@ -437,6 +437,7 @@
     grid-column: 1;
     justify-self: end;
     justify-content: center;
+    width: min(100%, 13rem);
   }
 
   .hero-visual--right {
@@ -444,6 +445,7 @@
     grid-column: 3;
     justify-self: start;
     justify-content: center;
+    width: min(100%, 16rem);
   }
 
   .hero-visual img,
@@ -517,11 +519,13 @@
 
   .hero-visual--left {
     grid-column: 1;
+    width: min(100%, 17rem);
   }
 
   .hero-visual--right {
     display: flex;
     grid-column: 3;
+    width: min(100%, 20.5rem);
   }
 
   .hero-visual img {
@@ -550,13 +554,15 @@
   }
 
   .hero-visual {
-    width: min(100%, 19.5rem);
     height: clamp(28rem, 58svh, 35rem);
   }
 
-  .hero-visual--left img,
-  .hero-visual--right img {
-    transform: translateY(0.85rem);
+  .hero-visual--left {
+    width: min(100%, 17.5rem);
+  }
+
+  .hero-visual--right {
+    width: min(100%, 21rem);
   }
 }
 
