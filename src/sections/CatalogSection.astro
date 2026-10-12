@@ -6,6 +6,8 @@ import { products, productStatusLabel } from '../data/products';
 import btsImage from '../assets/catalogo/bts.jpg';
 import blackpinkImage from '../assets/catalogo/black_pink.jpg';
 import strayKidsImage from '../assets/catalogo/stary_kids.jpg';
+import katseyeImage from '../assets/catalogo/katseye.jpg';
+import twiceImage from '../assets/catalogo/twice.jpg';
 import blackpinkBornPinkImage from '../assets/catalogo/albunes/black_pink/born_pink.jpg';
 import blackpinkDeadlineImage from '../assets/catalogo/albunes/black_pink/dead_line.jpg';
 import btsSoulImage from '../assets/catalogo/albunes/bts/soul.jpg';
@@ -31,15 +33,26 @@ type ProductGroup = {
   products: ProductView[];
 };
 
+type AvailableGroup = {
+  name: string;
+  image: ImageMetadata;
+};
+
 type ProductView = Product & {
   cover: ImageMetadata;
 };
 
-const groupImageByName: Record<string, ImageMetadata> = {
-  BTS: btsImage,
-  'Stray Kids': strayKidsImage,
-  BLACKPINK: blackpinkImage,
-};
+const availableGroups: AvailableGroup[] = [
+  { name: 'BTS', image: btsImage },
+  { name: 'Stray Kids', image: strayKidsImage },
+  { name: 'BLACKPINK', image: blackpinkImage },
+  { name: 'Katseye', image: katseyeImage },
+  { name: 'Twice', image: twiceImage },
+];
+
+const groupImageByName = Object.fromEntries(
+  availableGroups.map((group) => [group.name, group.image])
+) as Record<string, ImageMetadata>;
 
 const productImageById: Record<string, ImageMetadata> = {
   'album-01': btsSoulImage,
@@ -50,25 +63,23 @@ const productImageById: Record<string, ImageMetadata> = {
   'album-06': blackpinkDeadlineImage,
 };
 
-const groups = Object.values(
-  products.reduce<Record<string, ProductGroup>>((acc, product) => {
-    const key = product.group;
+const productsByGroup = products.reduce<Record<string, ProductView[]>>((acc, product) => {
+  const key = product.group;
 
-    if (!acc[key]) {
-      acc[key] = {
-        name: product.group,
-        image: groupImageByName[product.group] ?? btsImage,
-        products: [],
-      };
-    }
+  if (!acc[key]) acc[key] = [];
 
-    acc[key].products.push({
-      ...product,
-      cover: productImageById[product.id] ?? groupImageByName[product.group] ?? btsImage,
-    });
-    return acc;
-  }, {})
-);
+  acc[key].push({
+    ...product,
+    cover: productImageById[product.id] ?? groupImageByName[product.group] ?? btsImage,
+  });
+
+  return acc;
+}, {});
+
+const groups: ProductGroup[] = availableGroups.map((group) => ({
+  ...group,
+  products: productsByGroup[group.name] ?? [],
+}));
 ---
 
 <section id="catalogo" class="landing-section landing-section--catalog">
@@ -109,7 +120,7 @@ const groups = Object.values(
                   />
                 </span>
                 <span class="group-card__name">{group.name}</span>
-                <span class="group-card__hint">Ver muestra</span>
+                <span class="group-card__hint">{group.products.length > 0 ? 'Ver muestra' : 'Consultar grupo'}</span>
               </button>
             </article>
           );
@@ -152,44 +163,80 @@ const groups = Object.values(
             data-group-panel={group.name}
           >
             {
-              group.products.slice(0, 3).map((product) => (
-                <article class="product-card">
-                  <div class="product-media">
+              group.products.length > 0 ? (
+                group.products.slice(0, 3).map((product) => (
+                  <article class="product-card">
+                    <div class="product-media">
+                      <Picture
+                        src={product.cover}
+                        alt={`${product.group} - ${product.name}`}
+                        formats={['avif', 'webp']}
+                        widths={[260, 380, 520, 680]}
+                        sizes="(min-width: 760px) 30vw, calc(100vw - 2rem)"
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                      />
+                    </div>
+
+                    <div class="product-card__body">
+                      <div class="product-card__meta">
+                        <p>{product.category}</p>
+                        <span class={productStatusClass[product.status]}>
+                          {productStatusLabel[product.status]}
+                        </span>
+                      </div>
+
+                      <h3>{product.name}</h3>
+
+                      <ul class="product-proof" aria-label="Características del producto">
+                        {product.version && <li>{product.version}</li>}
+                        <li>Original</li>
+                        <li>Consulta directa</li>
+                      </ul>
+
+                      <div class="product-card__footer">
+                        <p>{product.price}</p>
+                        <a href={buildProductWhatsAppLink(product)}>
+                          Consultar por WhatsApp
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                ))
+              ) : (
+                <article class="product-card product-card--empty">
+                  <div class="product-media product-media--empty">
                     <Picture
-                      src={product.cover}
-                      alt={`${product.group} - ${product.name}`}
+                      src={group.image}
+                      alt={`${group.name} - grupo disponible para consultar`}
                       formats={['avif', 'webp']}
                       widths={[260, 380, 520, 680]}
                       sizes="(min-width: 760px) 30vw, calc(100vw - 2rem)"
-                      loading={index === 0 ? 'eager' : 'lazy'}
+                      loading="lazy"
                     />
                   </div>
 
                   <div class="product-card__body">
                     <div class="product-card__meta">
-                      <p>{product.category}</p>
-                      <span class={productStatusClass[product.status]}>
-                        {productStatusLabel[product.status]}
-                      </span>
+                      <p>Grupo disponible</p>
+                      <span class="status-pill status-pill--low">Por confirmar</span>
                     </div>
 
-                    <h3>{product.name}</h3>
+                    <h3>{group.name}</h3>
 
-                    <ul class="product-proof" aria-label="Características del producto">
-                      {product.version && <li>{product.version}</li>}
-                      <li>Original</li>
+                    <ul class="product-proof" aria-label={`Estado de productos de ${group.name}`}>
+                      <li>Álbumes por cargar</li>
                       <li>Consulta directa</li>
                     </ul>
 
                     <div class="product-card__footer">
-                      <p>{product.price}</p>
-                      <a href={buildProductWhatsAppLink(product)}>
-                        Consultar por WhatsApp
+                      <p>Consultar</p>
+                      <a href={buildGroupWhatsAppLink(group.name)}>
+                        Preguntar por WhatsApp
                       </a>
                     </div>
                   </div>
                 </article>
-              ))
+              )
             }
           </div>
         ))
@@ -252,3 +299,5 @@ const groups = Object.values(
     });
   </script>
 </section>
+
+

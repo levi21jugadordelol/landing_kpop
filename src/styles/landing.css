@@ -1879,3 +1879,21 @@
   }
 }
 
+
+.product-card--empty {
+  border-style: dashed;
+  border-color: rgba(249, 168, 212, 0.28);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(236, 72, 153, 0.12), transparent 14rem),
+    rgba(255, 255, 255, 0.045);
+}
+
+.product-media--empty img {
+  filter: saturate(0.96) brightness(0.82);
+}
+
+.product-media--empty::after {
+  background:
+    linear-gradient(180deg, rgba(7, 7, 12, 0.08), rgba(7, 7, 12, 0.68)),
+    radial-gradient(circle at 50% 45%, transparent 42%, rgba(236, 72, 153, 0.18));
+}
