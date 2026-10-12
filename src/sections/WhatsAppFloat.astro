@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { buildGeneralWhatsAppLink } from '../scripts/whatsapp/links';
 
 const whatsappLink = buildGeneralWhatsAppLink();
@@ -6,7 +7,7 @@ const whatsappLink = buildGeneralWhatsAppLink();
 
 <a class="whatsapp-float" href={whatsappLink} aria-label="Escríbenos por WhatsApp">
   <span class="whatsapp-float__cat" aria-hidden="true">
-    <span class="whatsapp-float__cat-face"></span>
+    <Icon name="fluent-emoji-flat:cat-face" />
   </span>
   <span class="whatsapp-float__label">Escríbeme</span>
   <span class="whatsapp-float__icon" aria-hidden="true">
