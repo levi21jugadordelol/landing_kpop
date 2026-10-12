@@ -203,6 +203,89 @@
     calc(300ms + (var(--hero-title-line-index) * 72ms)) both;
 }
 
+@keyframes heroBgFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -0.85rem;
+  }
+}
+
+@keyframes heroBgDrift {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0.75rem -0.35rem;
+  }
+}
+
+@keyframes heroBgPulse {
+  0%,
+  100% {
+    opacity: 0.52;
+    scale: 1;
+  }
+
+  50% {
+    opacity: 0.86;
+    scale: 1.16;
+  }
+}
+
+@keyframes heroBgImageBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: saturate(1) brightness(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+    filter: saturate(1.08) brightness(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-bg-image img {
+    animation: heroBgImageBreathe 10s ease-in-out infinite;
+  }
+
+  .hero-bg-card {
+    animation: heroBgFloat 6.8s ease-in-out infinite;
+  }
+
+  .hero-bg-orbit {
+    animation: heroBgDrift 8.5s ease-in-out infinite;
+  }
+
+  .hero-bg-card--two,
+  .hero-bg-orbit--two {
+    animation-delay: -3.2s;
+  }
+
+  .hero-bg-card--three {
+    animation-delay: -5.4s;
+  }
+
+  .hero-bg-spark {
+    animation: heroBgPulse 4.8s ease-in-out infinite;
+  }
+
+  .hero-bg-spark--two {
+    animation-delay: -2.7s;
+  }
+
+  .hero-bg-spark--three {
+    animation-delay: -4.8s;
+  }
+}
+
 @keyframes sectionRiseIn {
   from {
     opacity: 0;
@@ -269,6 +352,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .landing-section:not(.landing-hero) .section-heading,
+  .hero-bg-image img,
+  .hero-bg-card,
+  .hero-bg-orbit,
+  .hero-bg-spark,
   .group-card,
   .product-card,
   .delivery-card,
@@ -279,6 +366,8 @@
     animation: none;
     opacity: 1;
     transform: none;
+    translate: none;
+    scale: 1;
   }
 
   .group-card,

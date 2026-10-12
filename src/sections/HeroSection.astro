@@ -3,6 +3,7 @@ import { Picture } from 'astro:assets';
 import { business } from '../data/business';
 import { heroSlides } from '../data/heroSlides';
 import { buildGeneralWhatsAppLink } from '../scripts/whatsapp/links';
+import heroBgMobile from '../assets/hero/hero-bg-mobile.png';
 
 const whatsappLink = buildGeneralWhatsAppLink();
 const isEmphasisTitleLine = (line: string) => line.includes('K-pop');
@@ -13,6 +14,27 @@ const isEmphasisTitleLine = (line: string) => line.includes('K-pop');
     {
       heroSlides.map((slide) => (
         <article class={`hero-slide hero-slide--${slide.layout}`}>
+          <div class="hero-bg-decor" aria-hidden="true">
+            <span class="hero-bg-image">
+              <Picture
+                src={heroBgMobile}
+                alt=""
+                formats={['avif', 'webp']}
+                widths={[640, 900, 1080, 1440]}
+                sizes="(max-width: 889px) 100vw, 0px"
+                loading="eager"
+              />
+            </span>
+            <span class="hero-bg-card hero-bg-card--one"></span>
+            <span class="hero-bg-card hero-bg-card--two"></span>
+            <span class="hero-bg-card hero-bg-card--three"></span>
+            <span class="hero-bg-orbit hero-bg-orbit--one"></span>
+            <span class="hero-bg-orbit hero-bg-orbit--two"></span>
+            <span class="hero-bg-spark hero-bg-spark--one"></span>
+            <span class="hero-bg-spark hero-bg-spark--two"></span>
+            <span class="hero-bg-spark hero-bg-spark--three"></span>
+          </div>
+
           {slide.imageLeft && (
             <div class="hero-visual hero-visual--left" aria-hidden="true">
               <Picture
