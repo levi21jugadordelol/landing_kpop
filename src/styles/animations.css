@@ -421,3 +421,70 @@
     transition: none;
   }
 }
+
+@keyframes whatsappFloatIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes whatsappFloatBob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -0.28rem;
+  }
+}
+
+@keyframes whatsappFloatPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  35% {
+    opacity: 0.68;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.14);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .whatsapp-float {
+    animation:
+      whatsappFloatIn 420ms ease-out both,
+      whatsappFloatBob 5.5s ease-in-out 900ms infinite;
+  }
+
+  .whatsapp-float::after {
+    content: "";
+    position: absolute;
+    inset: -0.35rem;
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    border-radius: inherit;
+    opacity: 0;
+    animation: whatsappFloatPulse 2.8s ease-out 1.2s infinite;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float,
+  .whatsapp-float::after {
+    animation: none;
+    translate: none;
+    transform: none;
+  }
+}
