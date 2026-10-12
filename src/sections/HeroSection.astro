@@ -37,6 +37,7 @@ const isEmphasisTitleLine = (line: string) => line.includes('K-pop');
 
           {slide.imageLeft && (
             <div class="hero-visual hero-visual--left" aria-hidden="true">
+              <span class="hero-character-glow"></span>
               <Picture
                 src={slide.imageLeft}
                 alt=""
@@ -45,6 +46,17 @@ const isEmphasisTitleLine = (line: string) => line.includes('K-pop');
                 sizes="(min-width: 1024px) 34vw, 88vw"
                 loading="eager"
               />
+              <span class="hero-character-shadow"></span>
+              <span class="hero-character-reflection">
+                <Picture
+                  src={slide.imageLeft}
+                  alt=""
+                  formats={['avif', 'webp']}
+                  widths={[220, 320, 440, 560]}
+                  sizes="(max-width: 889px) 58vw, 0px"
+                  loading="eager"
+                />
+              </span>
             </div>
           )}
 

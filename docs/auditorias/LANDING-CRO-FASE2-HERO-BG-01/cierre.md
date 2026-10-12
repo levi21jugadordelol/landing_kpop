@@ -10,12 +10,14 @@
 - Se aumento la intensidad perceptible de la animacion sin introducir JS.
 - Se integro `src/assets/hero/hero-bg-mobile.png` como fondo optimizado solo para mobile/tablet.
 - Desktop mantiene el fondo CSS original sin usar el asset vertical.
+- Se agrego halo, sombra de apoyo y reflejo recortado para que el personaje mobile/tablet se integre con el piso neon.
 
 ## Archivos modificados
 
 - `src/sections/HeroSection.astro`
 - `src/styles/landing.css`
 - `src/styles/animations.css`
+- `docs/auditorias/LANDING-CRO-FASE2-HERO-BG-01/cierre.md`
 
 ## Validacion
 

@@ -404,9 +404,12 @@
   width: 100%;
   margin-top: 1.1rem;
   justify-content: center;
+  isolation: isolate;
 }
 
 .hero-visual--left picture {
+  position: relative;
+  z-index: 2;
   width: auto;
   height: auto;
 }
@@ -418,6 +421,88 @@
   max-height: none;
   object-fit: contain;
   object-position: center bottom;
+}
+
+.hero-character-glow,
+.hero-character-shadow,
+.hero-character-reflection {
+  position: absolute;
+  left: 50%;
+  display: none;
+  pointer-events: none;
+}
+
+.hero-character-glow {
+  z-index: 0;
+  bottom: clamp(5.4rem, 16vw, 7.25rem);
+  width: min(78vw, 25rem);
+  height: clamp(12rem, 38vw, 18rem);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 120, 193, 0.38), rgba(236, 72, 153, 0.18) 44%, transparent 72%),
+    radial-gradient(circle at 50% 78%, rgba(255, 255, 255, 0.12), transparent 38%);
+  filter: blur(1.05rem);
+  transform: translateX(-50%);
+}
+
+.hero-character-shadow {
+  z-index: 1;
+  bottom: clamp(2.85rem, 8vw, 3.8rem);
+  width: min(54vw, 18rem);
+  height: clamp(1.15rem, 4vw, 2rem);
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse at center, rgba(6, 2, 8, 0.82), rgba(236, 72, 153, 0.28) 48%, transparent 74%);
+  filter: blur(0.32rem);
+  transform: translateX(-50%);
+}
+
+.hero-character-reflection {
+  z-index: 1;
+  bottom: 0;
+  width: min(54vw, 18rem);
+  height: clamp(4.8rem, 16vw, 7rem);
+  overflow: hidden;
+  opacity: 0.2;
+  filter: blur(1.6px) saturate(1.08);
+  transform: translateX(-50%) scaleY(-1);
+  transform-origin: center top;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent 78%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent 78%);
+}
+
+.hero-character-reflection picture,
+.hero-character-reflection img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-character-reflection picture {
+  position: static;
+}
+
+.hero-character-reflection img {
+  transform: translateY(-57%);
+}
+
+@media (max-width: 889px) {
+  .hero-visual--left {
+    padding-bottom: clamp(2.8rem, 9vw, 4.2rem);
+  }
+
+  .hero-character-glow,
+  .hero-character-shadow,
+  .hero-character-reflection {
+    display: block;
+  }
+
+  .hero-character-reflection img {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    transform: translateY(-57%);
+  }
 }
 
 @media (min-width: 520px) {
@@ -532,6 +617,7 @@
     order: 2;
     flex: 0 0 auto;
     width: 100%;
+    padding-bottom: clamp(2.8rem, 8vw, 3.9rem);
     margin-top: 1.1rem;
     align-self: center;
     justify-content: center;
@@ -548,6 +634,35 @@
     max-width: min(74vw, 33rem);
     max-height: none;
     transform: none;
+  }
+
+  .hero-character-glow,
+  .hero-character-shadow,
+  .hero-character-reflection {
+    display: block;
+  }
+
+  .hero-character-glow {
+    bottom: clamp(6.4rem, 13vw, 8rem);
+    width: min(60vw, 24rem);
+    height: clamp(14rem, 28vw, 18rem);
+  }
+
+  .hero-character-shadow {
+    bottom: clamp(3.05rem, 6vw, 3.8rem);
+    width: min(42vw, 17rem);
+  }
+
+  .hero-character-reflection {
+    width: min(42vw, 17rem);
+    height: clamp(5rem, 11vw, 6.8rem);
+  }
+
+  .hero-character-reflection img {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    transform: translateY(-57%);
   }
 
   .hero-visual--right {
@@ -698,6 +813,7 @@
     justify-self: end;
     justify-content: center;
     width: min(100%, 13rem);
+    padding-bottom: 0;
   }
 
   .hero-visual--right {
