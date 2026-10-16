@@ -256,24 +256,16 @@
   text-transform: uppercase;
 }
 
-.hero-title {
+.hero-logo-title {
   margin: 0 auto;
-  max-width: 11.5ch;
-  font-size: clamp(2.15rem, 10.5vw, 3rem);
-  font-weight: 950;
-  letter-spacing: 0;
-  line-height: 0.96;
+  width: min(58vw, 12rem);
 }
 
-.hero-title-line {
+.hero-logo-title picture,
+.hero-logo-title img {
   display: block;
-}
-
-.hero-title-line--emphasis {
-  color: #ffffff;
-  text-shadow:
-    0 0 1rem rgba(236, 72, 153, 0.32),
-    0 0 2.2rem rgba(103, 232, 249, 0.16);
+  width: 100%;
+  height: auto;
 }
 
 .hero-description {
@@ -530,10 +522,8 @@
     width: min(100%, 38rem);
   }
 
-  .hero-title {
-    max-width: 12ch;
-    font-size: clamp(2.85rem, 6.4vw, 3.8rem);
-    line-height: 0.96;
+  .hero-logo-title {
+    width: 14rem;
   }
 
   .hero-description {
@@ -750,14 +740,8 @@
     text-align: center;
   }
 
-  .hero-title {
-    max-width: none;
-    font-size: clamp(3rem, 5.8vw, 4.1rem);
-    line-height: 0.96;
-  }
-
-  .hero-title-line {
-    white-space: nowrap;
+  .hero-logo-title {
+    width: 15rem;
   }
 
   .hero-description {
@@ -865,10 +849,8 @@
     text-align: center;
   }
 
-  .hero-title {
-    max-width: none;
-    font-size: clamp(3.65rem, 4.35vw, 4.7rem);
-    line-height: 0.96;
+  .hero-logo-title {
+    width: 16rem;
   }
 
   .hero-description {
@@ -923,10 +905,6 @@
 @media (min-width: 1280px) {
   .hero-slide {
     padding-inline: 0;
-  }
-
-  .hero-title {
-    font-size: clamp(4rem, 4.1vw, 4.85rem);
   }
 
   .hero-visual {

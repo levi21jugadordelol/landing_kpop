@@ -4,9 +4,9 @@ import { business } from '../data/business';
 import { heroSlides } from '../data/heroSlides';
 import { buildGeneralWhatsAppLink } from '../scripts/whatsapp/links';
 import heroBgMobile from '../assets/hero/hero-bg-mobile.png';
+import logo from '../assets/logo/logo.png';
 
 const whatsappLink = buildGeneralWhatsAppLink();
-const isEmphasisTitleLine = (line: string) => line.includes('K-pop');
 ---
 
 <section class="landing-hero" aria-label="Promociones principales">
@@ -63,21 +63,15 @@ const isEmphasisTitleLine = (line: string) => line.includes('K-pop');
           <div class="hero-content">
             <p class="hero-eyebrow hero-layer hero-layer--eyebrow">{slide.eyebrow}</p>
 
-            <h1 class="hero-title" aria-label={slide.title}>
-              {
-                slide.titleLines.map((line, index) => (
-                  <span
-                    class:list={[
-                      'hero-title-line',
-                      isEmphasisTitleLine(line) && 'hero-title-line--emphasis',
-                    ]}
-                    style={`--hero-title-line-index: ${index}`}
-                    aria-hidden="true"
-                  >
-                    {line}
-                  </span>
-                ))
-              }
+            <h1 class="hero-logo-title">
+              <Picture
+                src={logo}
+                alt="Neko Store"
+                formats={['avif', 'webp']}
+                widths={[192, 256, 320, 384, 512]}
+                sizes="(min-width: 1024px) 16rem, (min-width: 890px) 15rem, (min-width: 640px) 14rem, (max-width: 330px) 58vw, 12rem"
+                loading="eager"
+              />
             </h1>
 
             <p class="hero-description hero-layer hero-layer--description">
