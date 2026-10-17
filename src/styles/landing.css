@@ -1333,11 +1333,75 @@
 
 .group-product-panel {
   display: none;
-  gap: 1rem;
 }
 
 .group-product-panel.is-active {
+  display: block;
+}
+
+.product-rail-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.product-rail-controls button {
   display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid rgba(249, 168, 212, 0.42);
+  border-radius: 50%;
+  background: rgba(236, 72, 153, 0.14);
+  color: #ffffff;
+  font-size: 1.35rem;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.product-rail-controls button:hover:not(:disabled) {
+  border-color: var(--hero-soft);
+  background: rgba(236, 72, 153, 0.3);
+}
+
+.product-rail-controls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.product-rail-controls button:focus-visible {
+  outline: 3px solid var(--hero-soft);
+  outline-offset: 3px;
+}
+
+.group-product-rail {
+  display: flex;
+  min-width: 0;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.2rem 0.2rem 1rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.group-product-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.group-product-rail > .product-card {
+  flex: 0 0 min(82%, 22rem);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.group-product-panel--single .group-product-rail {
+  justify-content: center;
+  overflow-x: visible;
+}
+
+.group-product-panel--single .group-product-rail > .product-card {
+  flex-basis: min(100%, 22rem);
 }
 
 .product-card {
@@ -1705,7 +1769,6 @@
 @media (min-width: 760px) {
   .product-grid,
   .group-grid,
-  .group-product-panel.is-active,
   .delivery-grid,
   .steps-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1727,6 +1790,30 @@
 
   .product-media {
     min-height: 11rem;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .group-product-rail > .product-card {
+    flex-basis: calc((100% - 1rem) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-rail-controls {
+    display: none;
+  }
+
+  .group-product-rail {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+
+  .group-product-panel--single .group-product-rail {
+    justify-content: initial;
   }
 }
 

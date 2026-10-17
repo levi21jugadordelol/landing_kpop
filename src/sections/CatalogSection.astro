@@ -159,9 +159,30 @@ const groups: ProductGroup[] = availableGroups.map((group) => ({
       {
         groups.map((group, index) => (
           <div
-            class:list={['group-product-panel', index === 0 && 'is-active']}
+            class:list={[
+              'group-product-panel',
+              index === 0 && 'is-active',
+              group.products.length <= 1 && 'group-product-panel--single',
+            ]}
             data-group-panel={group.name}
           >
+            {group.products.length > 1 && (
+              <div class="product-rail-controls" role="group" aria-label={`Navegar productos de ${group.name}`}>
+                <button type="button" data-rail-prev aria-label="Producto anterior" aria-controls={`product-rail-${index}`} disabled>
+                  &larr;
+                </button>
+                <button type="button" data-rail-next aria-label="Producto siguiente" aria-controls={`product-rail-${index}`}>
+                  &rarr;
+                </button>
+              </div>
+            )}
+            <div
+              id={`product-rail-${index}`}
+              class="group-product-rail"
+              data-product-rail
+              role="group"
+              aria-label={`Productos de ${group.name}`}
+            >
             {
               group.products.length > 0 ? (
                 group.products.slice(0, 3).map((product) => (
@@ -172,7 +193,7 @@ const groups: ProductGroup[] = availableGroups.map((group) => ({
                         alt={`${product.group} - ${product.name}`}
                         formats={['avif', 'webp']}
                         widths={[260, 380, 520, 680]}
-                        sizes="(min-width: 760px) 30vw, calc(100vw - 2rem)"
+                        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, min(82vw, 22rem)"
                         loading={index === 0 ? 'eager' : 'lazy'}
                       />
                     </div>
@@ -210,7 +231,7 @@ const groups: ProductGroup[] = availableGroups.map((group) => ({
                       alt={`${group.name} - grupo disponible para consultar`}
                       formats={['avif', 'webp']}
                       widths={[260, 380, 520, 680]}
-                      sizes="(min-width: 760px) 30vw, calc(100vw - 2rem)"
+                      sizes="(min-width: 1024px) 30vw, 22rem"
                       loading="lazy"
                     />
                   </div>
@@ -238,6 +259,7 @@ const groups: ProductGroup[] = availableGroups.map((group) => ({
                 </article>
               )
             }
+            </div>
           </div>
         ))
       }
@@ -258,6 +280,45 @@ const groups: ProductGroup[] = availableGroups.map((group) => ({
     const detail = document.querySelector('[data-group-detail]');
     const detailTitle = document.querySelector('[data-group-detail-title]');
     const detailLink = document.querySelector('[data-group-detail-link]');
+
+    const updateRailControls = (panel: Element) => {
+      const rail = panel.querySelector('[data-product-rail]');
+      const previous = panel.querySelector('[data-rail-prev]');
+      const next = panel.querySelector('[data-rail-next]');
+      if (!(rail instanceof HTMLElement)) return;
+      if (!(previous instanceof HTMLButtonElement) || !(next instanceof HTMLButtonElement)) return;
+
+      previous.disabled = rail.scrollLeft <= 2;
+      next.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2;
+    };
+
+    document.querySelectorAll('[data-group-panel]').forEach((panel) => {
+      const rail = panel.querySelector('[data-product-rail]');
+      if (!(rail instanceof HTMLElement)) return;
+
+      rail.addEventListener('scroll', () => updateRailControls(panel), { passive: true });
+
+      panel.querySelectorAll('[data-rail-prev], [data-rail-next]').forEach((control) => {
+        control.addEventListener('click', () => {
+          const card = rail.querySelector('.product-card');
+          if (!(card instanceof HTMLElement)) return;
+
+          const step = card.getBoundingClientRect().width + parseFloat(getComputedStyle(rail).gap);
+          rail.scrollBy({
+            left: control.hasAttribute('data-rail-next') ? step : -step,
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+          });
+        });
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('[data-group-panel].is-active').forEach(updateRailControls);
+    });
+
+    requestAnimationFrame(() => {
+      document.querySelectorAll('[data-group-panel].is-active').forEach(updateRailControls);
+    });
 
     catalog?.addEventListener('click', (event) => {
       const button = event.target instanceof Element
@@ -284,6 +345,11 @@ const groups: ProductGroup[] = availableGroups.map((group) => ({
 
       document.querySelectorAll('[data-group-panel]').forEach((panel) => {
         panel.classList.toggle('is-active', panel.getAttribute('data-group-panel') === selectedGroup);
+        if (panel.getAttribute('data-group-panel') === selectedGroup) {
+          const rail = panel.querySelector('[data-product-rail]');
+          if (rail instanceof HTMLElement) rail.scrollLeft = 0;
+          requestAnimationFrame(() => updateRailControls(panel));
+        }
       });
 
       if (detailTitle) detailTitle.textContent = selectedTitle ?? `Muestra de ${selectedGroup}`;
